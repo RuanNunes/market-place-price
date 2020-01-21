@@ -1,4 +1,4 @@
-package com.market.exceptions;
+package com.market.service.exceptions;
 
 public class DataIntegrityException extends RuntimeException {
 

@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.market.exceptions.ObjectNotFoundException;
 import com.market.model.Custumer;
 import com.market.repository.CustumerRepository;
+import com.market.service.exception.ObjectNotFoundException;
 
 @Service
 public class CustumerService {

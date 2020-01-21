@@ -1,26 +1,24 @@
-package com.market.model;
+package com.market.contract.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-@Entity
-public class RuleMarketPlace extends PersistentEntity implements Serializable{
-	private static final long serialVersionUID = 1L;
-	 
-	@Column(nullable = false, unique = true)
+public class RuleMarketPlaceDTO {
+
+	private Long id;
+	
+	@NotNull
 	private String name;
 	
 	@NotNull
