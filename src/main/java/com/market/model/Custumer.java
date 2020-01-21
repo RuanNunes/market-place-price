@@ -23,4 +23,12 @@ public class Custumer extends PersistentEntity implements Serializable{
 	private String email;
 	@NotNull
 	private String password;
+	
+	
+	//TODO faz parte das rules
+	@NotNull
+	private String level;
+	
+	@NotNull
+	private String category;
 }

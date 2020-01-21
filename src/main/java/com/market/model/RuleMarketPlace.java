@@ -1,9 +1,11 @@
 package com.market.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,4 +22,17 @@ public class RuleMarketPlace extends PersistentEntity implements Serializable{
 	 
 	@Column(nullable = false, unique = true)
 	private String name;
+	
+	@NotNull
+	private String description;
+	
+	@NotNull
+	private BigDecimal discountPercentage;
+	
+	
+	private Integer defaultShippingValue;
+	
+	private BigDecimal flatRate;
+
+
 }
