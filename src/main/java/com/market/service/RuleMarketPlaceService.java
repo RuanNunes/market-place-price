@@ -33,7 +33,7 @@ public class RuleMarketPlaceService {
 		final var rules = ruleMarketPlaceRepository.findAll();
 		
 		if(rules.isEmpty())
-			new ObjectNotFoundException("Não existe usuarios cadastrados");
+			new ObjectNotFoundException("Não existe Regras cadastradas");
 		
 		return mapper.toDto(rules);
 	}

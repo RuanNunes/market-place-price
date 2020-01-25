@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.market.contract.dto.CustumerDTO;
+import com.market.mapper.CustumerMapper;
 import com.market.model.Custumer;
 import com.market.repository.CustumerRepository;
 import com.market.service.exception.ObjectNotFoundException;
@@ -15,23 +17,27 @@ public class CustumerService {
 	@Autowired
 	private CustumerRepository custumerRepository;
 	
-	public Custumer save(final Custumer custumer) {
-		if(!(custumer.getId() == null)) 
-			custumer.setId(null);
+	@Autowired
+	private CustumerMapper mapper;
+	
+	public CustumerDTO save(final CustumerDTO dto) {
+		if(!(dto.getId() == null)) 
+			dto.setId(null);
 		
-		return custumerRepository.save(custumer);
+		final Custumer entity = mapper.toEntity(dto);
+		return mapper.toDto(custumerRepository.save(entity));
 	}
 	
-	public List<Custumer> findAll(){
+	public List<CustumerDTO> findAll(){
 		final var custumers = custumerRepository.findAll();
 		
 		if(custumers.isEmpty())
 			new ObjectNotFoundException("Não existe usuarios cadastrados");
 		
-		return custumers;
+		return mapper.toDto(custumers);
 	}
 	
-	public Custumer find(Integer id) {
+	public CustumerDTO find(Long id) {
 		
 		//TODO descomentar quando implementação de spring security for configurada
 //		UserSS user = UserService.authenticated();
@@ -41,9 +47,10 @@ public class CustumerService {
 //		}
 		
 		Optional<Custumer> obj = custumerRepository.findById(id);
+		
 		//orElseThrow recebe função que instancia uma exception customizada utilizando uma expressão lambda
-		return obj.orElseThrow(() -> new ObjectNotFoundException(    "Objeto não encontrado! Id: " 
-									+ id + ", Tipo: " + Custumer.class.getName())); 
+		return mapper.toDto(obj.orElseThrow(() -> new ObjectNotFoundException(    "Objeto não encontrado! Id: " 
+									+ id + ", Tipo: " + Custumer.class.getName()))); 
 	}
 
 }

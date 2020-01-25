@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.market.model.Custumer;
 @Repository
-public interface CustumerRepository extends JpaRepository<Custumer, Integer> {
+public interface CustumerRepository extends JpaRepository<Custumer, Long> {
 
 }

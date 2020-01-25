@@ -12,31 +12,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.market.contract.dto.RuleMarketPlaceDTO;
+import com.market.contract.dto.CustumerDTO;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@RequestMapping("/api/v1/rules/")
-public interface RuleMarketPlaceApi extends GenericApi<RuleMarketPlaceDTO> {
+@RequestMapping("/api/v1/custumers/")
+public interface CustumerApi extends GenericApi<CustumerDTO> {
 	
 	@Override
-	@ApiOperation(value="Inclusão de Regras Market Place")
+	@ApiOperation(value="Inclusão de custumer")
 	@PostMapping()
-	public ResponseEntity<Void> save(@Valid @RequestBody RuleMarketPlaceDTO dto);
+	public ResponseEntity<Void> save(@Valid @RequestBody CustumerDTO dto);
 	
 	@Override
-	@ApiOperation(value="Busca por Rule-id") 
+	@ApiOperation(value="Busca por custumer-id") 
 	@ApiResponses(value = {
-			@ApiResponse(code = 404, message = "rule não encontrado") })
+			@ApiResponse(code = 404, message = "custumer não encontrado") })
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<RuleMarketPlaceDTO> find(@PathVariable String id);
+	public ResponseEntity<CustumerDTO> find(@PathVariable String id);
 	
 	@Override
-	@ApiOperation(value="Busca por todas rules") 
+	@ApiOperation(value="Busca por todos custumer") 
 	@ApiResponses(value = {
-			@ApiResponse(code = 404, message = "nenhum rule encontrada") })
-	@GetMapping()
-	public ResponseEntity<List<RuleMarketPlaceDTO>> findAll();
+			@ApiResponse(code = 404, message = "nenhum custumer encontrado") })
+	@GetMapping
+	public ResponseEntity<List<CustumerDTO>> findAll();
 }

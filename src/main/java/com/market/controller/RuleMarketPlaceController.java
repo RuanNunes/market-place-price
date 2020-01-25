@@ -1,6 +1,7 @@
 package com.market.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -20,13 +21,23 @@ public class RuleMarketPlaceController implements RuleMarketPlaceApi{
 	
 	@Autowired
 	private RuleMarketPlaceService service;
-	
+
 	@Override
-	public ResponseEntity<Void> saveRuleMarketPlace(@Valid RuleMarketPlaceDTO dto) {
+	public ResponseEntity<Void> save(@Valid RuleMarketPlaceDTO dto) {
 		final var obj = service.save(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+
+	@Override
+	public ResponseEntity<RuleMarketPlaceDTO> find(String id) {
+		return ResponseEntity.ok().body(service.find(Long.parseLong(id)));
+	}
+	
+	@Override
+	public ResponseEntity<List<RuleMarketPlaceDTO>> findAll() {
+		return ResponseEntity.ok().body(service.findAll());
 	}
 
 }

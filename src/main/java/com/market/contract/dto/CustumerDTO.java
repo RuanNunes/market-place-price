@@ -1,7 +1,6 @@
 package com.market.contract.dto;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.validation.constraints.NotNull;
 
@@ -14,22 +13,20 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RuleMarketPlaceDTO implements Serializable{
-
+public class CustumerDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	private Long id;
+	@NotNull
+	private String email;
+	@NotNull
+	private String password;
+	
+	//TODO faz parte das rules
+	@NotNull
+	private String level;
 	
 	@NotNull
-	private String name;
-	
-	@NotNull
-	private String description;
-	
-	@NotNull
-	private BigDecimal discountPercentage;
-	
-	private Integer defaultShippingValue;
-	
-	private BigDecimal flatRate;
+	private String category;
+
 }
