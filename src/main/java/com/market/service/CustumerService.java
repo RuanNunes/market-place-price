@@ -21,7 +21,7 @@ public class CustumerService {
 	private CustumerMapper mapper;
 	
 	public CustumerDTO save(final CustumerDTO dto) {
-		if(!(dto.getId() == null)) 
+		if((dto.getId() != null)) 
 			dto.setId(null);
 		
 		final Custumer entity = mapper.toEntity(dto);
