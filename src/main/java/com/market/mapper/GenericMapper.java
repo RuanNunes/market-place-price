@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import com.google.common.reflect.TypeToken;
-import com.market.contract.dto.PaginatedResourceDto;
+import com.market.contract.dto.PaginatedResourceDTO;
 
 @Component
 public class GenericMapper<Entity, Dto> {
@@ -39,8 +39,8 @@ public class GenericMapper<Entity, Dto> {
 	    return entities.stream().map(it -> toDto(it)).collect(Collectors.toList());
 	  }
 
-	  public PaginatedResourceDto<Dto> toDto(final Page<Entity> page) {
-	    return PaginatedResourceDto.<Dto>builder()
+	  public PaginatedResourceDTO<Dto> toDto(final Page<Entity> page) {
+	    return PaginatedResourceDTO.<Dto>builder()
 	        .records(toDto(page.getContent()))
 	        .totalRecords(page.getTotalElements())
 	        .thisPage(page.getPageable().getPageNumber())

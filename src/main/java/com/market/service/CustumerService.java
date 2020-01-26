@@ -48,9 +48,6 @@ public class CustumerService {
 		
 		Optional<Custumer> obj = custumerRepository.findById(id);
 		
-		//orElseThrow recebe função que instancia uma exception customizada utilizando uma expressão lambda
-		return mapper.toDto(obj.orElseThrow(() -> new ObjectNotFoundException(    "Objeto não encontrado! Id: " 
-									+ id + ", Tipo: " + Custumer.class.getName()))); 
+		return mapper.toDto(obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+id+", Tipo: "+Custumer.class.getName()))); 
 	}
-
 }

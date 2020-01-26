@@ -45,5 +45,4 @@ public class RuleMarketPlaceService {
 		return mapper.toDto(entity.orElseThrow(() -> new ObjectNotFoundException(    "Objeto não encontrado! Id: " 
 				+ id + ", Tipo: " + RuleMarketPlace.class.getName())));
 	}
-
 }

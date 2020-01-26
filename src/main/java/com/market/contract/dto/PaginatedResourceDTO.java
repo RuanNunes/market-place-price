@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaginatedResourceDto<T> {
+public class PaginatedResourceDTO<T> {
 	private int thisPage;
 	private int lastPage;
 
