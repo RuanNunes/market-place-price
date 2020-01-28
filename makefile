@@ -5,14 +5,14 @@ help:  ## Exibir essa ajuda
 
 ##@ Market Place Price
 
-build: ## gerar arquivo .jar
+build: ## Gera o arquivo .jar
 	docker run --rm \
 		-v "$(shell pwd)":/app \
 		-w /app \
 	maven:3.6.3-jdk-13 \
 	mvn clean install
 
-run: ## iniciar o container com a imagem Market Place Price
+run: ## Cria o container que executa o Market Place Price
 	docker run --name marketapi-srv -d --restart=unless-stopped \
 		-e VIRTUAL_HOST=market.api.jeudi.dev \
 		-e VIRTUAL_PORT=8080 \
@@ -22,18 +22,18 @@ run: ## iniciar o container com a imagem Market Place Price
 	openjdk:13 \
 	java -jar /app/target/market-place-price-docker.jar
 
-_stop: ## para o container do market place price
+start: ## Inicia o container market place price
+	docker start marketapi-srv
+
+stop: ## Para o container market place price
 	docker stop marketapi-srv
 
-_rm: ## remove o coantiner do market place price
+_rm: ## Remove o coantiner market place price
 	docker stop marketapi-srv
 	docker rm marketapi-srv
 
-log: ## exibe o log de execucao do caontiner market place price
+log: ## Log de execucao do continer market place price
 	docker logs --tail 50 --follow marketapi-srv
 
-_restart: ## reiniciar o container do market place price
+restart: ## Reiniciar o container  market place price
 	docker restart marketapi-srv
-
-test: ## teste pwd
-	echo $(shell pwd)
