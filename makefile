@@ -5,9 +5,6 @@ help:  ## Exibir essa ajuda
 
 ##@ Market Place Price
 
-_clone: ## clona o projeto market place price
-	git clone https://github.com/RuanNunes/market-place-price.git market-src
-
 build: ## gerar arquivo .jar
 	docker run --rm \
 		-v "$(shell pwd)":/app \
