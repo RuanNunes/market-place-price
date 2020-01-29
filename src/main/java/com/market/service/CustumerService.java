@@ -6,29 +6,31 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.market.contract.dto.CustumerDTO;
-import com.market.mapper.CustumerMapper;
-import com.market.model.Custumer;
+import com.market.contract.dto.CostumerDTO;
+import com.market.mapper.CostumerMapper;
+import com.market.model.Costumer;
 import com.market.repository.CustumerRepository;
 import com.market.service.exception.ObjectNotFoundException;
 
 @Service
-public class CustumerService {
+public class CustumerService implements GenericService<CostumerDTO>{
 	@Autowired
 	private CustumerRepository custumerRepository;
 	
 	@Autowired
-	private CustumerMapper mapper;
+	private CostumerMapper mapper;
 	
-	public CustumerDTO save(final CustumerDTO dto) {
+	@Override
+	public CostumerDTO save(final CostumerDTO dto) {
 		if((dto.getId() != null)) 
 			dto.setId(null);
 		
-		final Custumer entity = mapper.toEntity(dto);
+		final Costumer entity = mapper.toEntity(dto);
 		return mapper.toDto(custumerRepository.save(entity));
 	}
 	
-	public List<CustumerDTO> findAll(){
+	@Override
+	public List<CostumerDTO> findAll(){
 		final var custumers = custumerRepository.findAll();
 		
 		if(custumers.isEmpty())
@@ -37,7 +39,8 @@ public class CustumerService {
 		return mapper.toDto(custumers);
 	}
 	
-	public CustumerDTO find(Long id) {
+	@Override
+	public CostumerDTO find(Long id) {
 		
 		//TODO descomentar quando implementação de spring security for configurada
 //		UserSS user = UserService.authenticated();
@@ -46,8 +49,15 @@ public class CustumerService {
 //			throw new AuthorizationException("Acesso negado.");
 //		}
 		
-		Optional<Custumer> obj = custumerRepository.findById(id);
+		Optional<Costumer> obj = custumerRepository.findById(id);
 		
-		return mapper.toDto(obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+id+", Tipo: "+Custumer.class.getName()))); 
+		return mapper.toDto(obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+id+", Tipo: "+Costumer.class.getName()))); 
 	}
+
+	@Override
+	public CostumerDTO update(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

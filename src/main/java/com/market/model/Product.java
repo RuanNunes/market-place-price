@@ -24,7 +24,7 @@ public class Product extends PersistentEntity implements Serializable{
 	@OneToOne
 	@JoinColumn(name = "custumer_id")
 	@NotNull
-	private Custumer custumerId;
+	private Costumer custumerId;
 	@OneToOne
 	@JoinColumn(name = "rule_market_place_id")
 	private RuleMarketPlace ruleMarketPlaceId;

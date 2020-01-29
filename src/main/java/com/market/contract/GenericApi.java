@@ -13,5 +13,7 @@ public interface GenericApi<T> {
 	public ResponseEntity<?> findAll();
 	
 	public ResponseEntity<?> find(@PathVariable String id) ;
+	
+	public ResponseEntity<?> findPaginate(@PathVariable String id) ;
 
 }

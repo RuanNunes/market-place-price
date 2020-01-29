@@ -13,13 +13,14 @@ import com.market.repository.RuleMarketPlaceRepository;
 import com.market.service.exception.ObjectNotFoundException;
 
 @Service
-public class RuleMarketPlaceService {
+public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO>{
 	@Autowired
 	private RuleMarketPlaceRepository ruleMarketPlaceRepository;
 	
 	@Autowired 
 	private RuleMarketPlaceMapper mapper;
 	
+	@Override
 	public RuleMarketPlaceDTO save(final RuleMarketPlaceDTO dto) {
 		final RuleMarketPlace entity = mapper.toEntity(dto);
 
@@ -29,6 +30,7 @@ public class RuleMarketPlaceService {
 		return mapper.toDto(ruleMarketPlaceRepository.save(entity));
 	}
 	
+	@Override
 	public List<RuleMarketPlaceDTO> findAll(){
 		final var rules = ruleMarketPlaceRepository.findAll();
 		
@@ -38,11 +40,18 @@ public class RuleMarketPlaceService {
 		return mapper.toDto(rules);
 	}
 	
+	@Override
 	public RuleMarketPlaceDTO find(Long id) {
 		
 		final Optional<RuleMarketPlace> entity = ruleMarketPlaceRepository.findById(id);
 
 		return mapper.toDto(entity.orElseThrow(() -> new ObjectNotFoundException(    "Objeto não encontrado! Id: " 
 				+ id + ", Tipo: " + RuleMarketPlace.class.getName())));
+	}
+
+	@Override
+	public RuleMarketPlaceDTO update(Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

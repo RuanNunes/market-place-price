@@ -1,26 +1,29 @@
-package com.market.contract.dto;
+package com.market.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustumerDTO implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+@Entity
+public class Costumer extends PersistentEntity implements Serializable{
+
 	private static final long serialVersionUID = 1L;
-	
-	private Long id;
 	@NotNull
 	private String email;
 	@NotNull
 	private String password;
+	
 	
 	//TODO faz parte das rules
 	@NotNull
@@ -28,5 +31,4 @@ public class CustumerDTO implements Serializable {
 	
 	@NotNull
 	private String category;
-
 }

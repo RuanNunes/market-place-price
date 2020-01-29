@@ -40,4 +40,10 @@ public class RuleMarketPlaceController implements RuleMarketPlaceApi{
 		return ResponseEntity.ok().body(service.findAll());
 	}
 
+	@Override
+	public ResponseEntity<?> findPaginate(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

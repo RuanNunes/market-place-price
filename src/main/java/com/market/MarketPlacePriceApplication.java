@@ -30,7 +30,7 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
-		//saveUmAUm();
+//		saveUmAUm();
 		//saveInPackage();
 	}
 	

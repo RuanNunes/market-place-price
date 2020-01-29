@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.market.contract.CustumerApi;
-import com.market.contract.dto.CustumerDTO;
+import com.market.contract.dto.CostumerDTO;
 import com.market.service.CustumerService;
 
 @Valid
@@ -22,7 +22,7 @@ public class CustumerController implements CustumerApi{
 	private CustumerService service;
 	
 	@Override
-	public ResponseEntity<Void> save(@Valid @RequestBody CustumerDTO custumer){
+	public ResponseEntity<Void> save(@Valid @RequestBody CostumerDTO custumer){
 		final var obj = service.save(custumer);
 		//retorna url com novo registro inserido
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -31,12 +31,18 @@ public class CustumerController implements CustumerApi{
 	}
 
 	@Override
-	public ResponseEntity<CustumerDTO> find(String id) {
+	public ResponseEntity<CostumerDTO> find(String id) {
 		return ResponseEntity.ok().body(service.find(Long.parseLong(id)));
 	}
 
 	@Override
-	public ResponseEntity<List<CustumerDTO>> findAll() {
+	public ResponseEntity<List<CostumerDTO>> findAll() {
 		return ResponseEntity.ok().body(service.findAll());
+	}
+
+	@Override
+	public ResponseEntity<?> findPaginate(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
