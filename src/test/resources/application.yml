@@ -8,8 +8,8 @@ spring:
     jpa.properties.hibernate.temp.use_jdbc_metadata_defaults: false
     jpa.database-platform: org.hibernate.dialect.PostgreSQL9Dialect
 
-jwt.secret=SequenciaDeCaracteresParaAssinarToken
-jwt.expiration=60000 �������������������������������������������������������������������������������������������������������������������
+market:
+    api.uri: ${MARKET_API_URI:localhost:8080}
 
 logging.level.org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE
 spring.http.log-request-details: true

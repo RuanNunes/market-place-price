@@ -1,18 +1,17 @@
 package com.market;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.market.client.CostumerClient;
+import com.market.client.RuleMarketPlaceClient;
 import com.market.repository.CostumerRepository;
 import com.market.repository.RuleMarketPlaceRepository;
 import com.market.utils.WebClientUtil;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.util.MultiValueMap;
-
-import java.util.Collections;
 
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -30,19 +29,16 @@ public class BaseTests {
 	@Autowired
 	protected RuleMarketPlaceRepository ruleMarketPlaceRepository;
 
-		// Spring Boot will create a `WebTestClient` for you,
+	// Spring Boot will create a `WebTestClient` for you,
 	// already configure and ready to issue requests against "localhost:RANDOM_PORT"
 	@Autowired
 	protected WebTestClient webTestClient;
 
-//	@MockBean
-//	protected ConsumerClient consumerClient;
+	@MockBean
+	protected CostumerClient costumerClient;
 
-//	@MockBean
-//	protected SellerClient commonSellerClient;
-
-//	@MockBean
-//	protected AddressClient addressClient;
+	@MockBean
+	protected RuleMarketPlaceClient ruleMarketPlaceClient;
 
 	protected void clearDatabase() {
 		ruleMarketPlaceRepository.deleteAll();
