@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import com.market.contract.dto.CostumerDTO;
 import com.market.mapper.CostumerMapper;
 import com.market.model.Costumer;
-import com.market.repository.CustumerRepository;
+import com.market.repository.CostumerRepository;
 import com.market.service.exception.ObjectNotFoundException;
 
 @Service
 public class CustumerService implements GenericService<CostumerDTO>{
 	@Autowired
-	private CustumerRepository custumerRepository;
+	private CostumerRepository costumerRepository;
 	
 	@Autowired
 	private CostumerMapper mapper;
@@ -26,12 +26,12 @@ public class CustumerService implements GenericService<CostumerDTO>{
 			dto.setId(null);
 		
 		final Costumer entity = mapper.toEntity(dto);
-		return mapper.toDto(custumerRepository.save(entity));
+		return mapper.toDto(costumerRepository.save(entity));
 	}
 	
 	@Override
 	public List<CostumerDTO> findAll(){
-		final var custumers = custumerRepository.findAll();
+		final var custumers = costumerRepository.findAll();
 		
 		if(custumers.isEmpty())
 			new ObjectNotFoundException("Não existe usuarios cadastrados");
@@ -49,7 +49,7 @@ public class CustumerService implements GenericService<CostumerDTO>{
 //			throw new AuthorizationException("Acesso negado.");
 //		}
 		
-		Optional<Costumer> obj = custumerRepository.findById(id);
+		Optional<Costumer> obj = costumerRepository.findById(id);
 		
 		return mapper.toDto(obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+id+", Tipo: "+Costumer.class.getName()))); 
 	}

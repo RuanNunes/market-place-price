@@ -31,7 +31,7 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 //		saveUmAUm();
-		//saveInPackage();
+//		saveInPackage();
 	}
 	
 	private void saveUmAUm() {
@@ -55,7 +55,7 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 	private void saveInPackage() {
 		
 		Long mileInic = System.currentTimeMillis();
-		int pacote = 10000;
+		int pacote = 1000;
 		System.out.println("Incluindo "+pacote+ " a " + pacote);
 		for (int i = 0; i < 10; i++) {
 			final List<RuleMarketPlace> rules = new ArrayList<RuleMarketPlace>();

@@ -1,0 +1,16 @@
+spring:
+    datasource.url: jdbc:postgresql://db.jeudi.dev:5432/market-db
+    datasource.username: market-app
+    datasource.password: 1123
+    jpa.hibernate.ddl-auto: update
+    jpa.show-sql: true
+    jpa.properties.hibernate.format_sql: false
+    jpa.properties.hibernate.temp.use_jdbc_metadata_defaults: false
+    jpa.database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+
+jwt:
+    secret: SequenciaDeCaracteresParaAssinarToken
+    expiration: 600000
+
+logging.level.org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE
+spring.http.log-request-details: true
