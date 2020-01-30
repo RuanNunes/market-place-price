@@ -6,5 +6,5 @@ public interface GenericService<T> {
 	public T save(final T dto);
 	public List<T> findAll();
 	public T find(final Long id);
-	public T update(final Long id);
+	public T update(final T dto,final Long id);
 }

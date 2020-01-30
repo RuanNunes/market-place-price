@@ -48,10 +48,11 @@ public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO
 		return mapper.toDto(entity.orElseThrow(() -> new ObjectNotFoundException(    "Objeto não encontrado! Id: " 
 				+ id + ", Tipo: " + RuleMarketPlace.class.getName())));
 	}
-
+	
 	@Override
-	public RuleMarketPlaceDTO update(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public RuleMarketPlaceDTO update(final RuleMarketPlaceDTO dto, final Long id) {
+	    final RuleMarketPlaceDTO findDto = find(id);
+	    final RuleMarketPlaceDTO updatedDto = mapper.updateDto(findDto, dto);
+	    return mapper.toDto(ruleMarketPlaceRepository.save(mapper.toEntity(updatedDto)));
+	  }
 }

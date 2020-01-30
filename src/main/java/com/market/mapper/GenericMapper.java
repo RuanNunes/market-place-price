@@ -31,6 +31,11 @@ public class GenericMapper<Entity, Dto> {
 	    return entity;
 	  }
 
+	  public Dto updateDto(final Dto findDto, final Dto dto) {
+		    modelMapper.map(dto, findDto);
+		    return findDto;
+	  }
+	  
 	  public Dto toDto(final Entity entity) {
 	    return modelMapper.map(entity, dtoType.getType());
 	  }
