@@ -31,19 +31,17 @@ public class RuleMarketPlaceController implements RuleMarketPlaceApi{
 	}
 
 	@Override
-	public ResponseEntity<RuleMarketPlaceDTO> find(String id) {
-		return ResponseEntity.ok().body(service.find(Long.parseLong(id)));
+	public ResponseEntity<RuleMarketPlaceDTO> find(Long id) {
+		return ResponseEntity.ok().body(service.find(id));
 	}
-	
+
 	@Override
 	public ResponseEntity<List<RuleMarketPlaceDTO>> findAll() {
 		return ResponseEntity.ok().body(service.findAll());
 	}
 
 	@Override
-	public ResponseEntity<?> findPaginate(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<RuleMarketPlaceDTO> update(@Valid RuleMarketPlaceDTO objDTO, Long id) {
+		return ResponseEntity.ok().body(service.update(objDTO,id));
 	}
-
 }

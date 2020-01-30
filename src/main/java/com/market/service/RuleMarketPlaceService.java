@@ -11,6 +11,7 @@ import com.market.mapper.RuleMarketPlaceMapper;
 import com.market.model.RuleMarketPlace;
 import com.market.repository.RuleMarketPlaceRepository;
 import com.market.service.exception.ObjectNotFoundException;
+import com.market.service.exception.ResourceNotFoundException;
 
 @Service
 public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO>{
@@ -51,8 +52,11 @@ public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO
 	
 	@Override
 	public RuleMarketPlaceDTO update(final RuleMarketPlaceDTO dto, final Long id) {
-	    final RuleMarketPlaceDTO findDto = find(id);
-	    final RuleMarketPlaceDTO updatedDto = mapper.updateDto(findDto, dto);
-	    return mapper.toDto(ruleMarketPlaceRepository.save(mapper.toEntity(updatedDto)));
+		final RuleMarketPlace entity =
+				 ruleMarketPlaceRepository.findById(id).orElseThrow(ResourceNotFoundException.supply());
+
+		final RuleMarketPlace updateEntity = mapper.updateEntity(entity, dto);
+		final RuleMarketPlace updatedEntity = ruleMarketPlaceRepository.save(updateEntity);
+		return mapper.toDto(updatedEntity);
 	  }
 }

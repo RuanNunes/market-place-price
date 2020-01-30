@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.hibernate.validator.internal.constraintvalidators.bv.time.futureorpresent.FutureOrPresentValidatorForDate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RequestMapping("/api/v1/custumers/")
-public interface CustumerApi extends GenericApi<CostumerDTO> {
+public interface CostumerApi extends GenericApi<CostumerDTO> {
 	
 	@Override
 	@ApiOperation(value="Inclusão de custumer")
@@ -31,7 +32,7 @@ public interface CustumerApi extends GenericApi<CostumerDTO> {
 	@ApiResponses(value = {
 			@ApiResponse(code = 404, message = "custumer não encontrado") })
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<CostumerDTO> find(@PathVariable String id);
+	public ResponseEntity<CostumerDTO> find(@PathVariable Long id);
 	
 	@Override
 	@ApiOperation(value="Busca por todos custumer") 
@@ -39,4 +40,6 @@ public interface CustumerApi extends GenericApi<CostumerDTO> {
 			@ApiResponse(code = 404, message = "nenhum custumer encontrado") })
 	@GetMapping
 	public ResponseEntity<List<CostumerDTO>> findAll();
+
+
 }

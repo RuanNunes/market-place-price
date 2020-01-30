@@ -55,9 +55,11 @@ public class CustumerService implements GenericService<CostumerDTO>{
 	}
 
 	@Override
-	public CostumerDTO update(Long id) {
+	public CostumerDTO update(CostumerDTO dto, Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

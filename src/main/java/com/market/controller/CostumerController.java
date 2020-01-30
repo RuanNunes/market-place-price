@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.market.contract.CustumerApi;
+import com.market.contract.CostumerApi;
 import com.market.contract.dto.CostumerDTO;
 import com.market.service.CustumerService;
 
 @Valid
 @RestController
-public class CustumerController implements CustumerApi{
+public class CostumerController implements CostumerApi {
 	@Autowired
 	private CustumerService service;
 	
@@ -31,8 +31,8 @@ public class CustumerController implements CustumerApi{
 	}
 
 	@Override
-	public ResponseEntity<CostumerDTO> find(String id) {
-		return ResponseEntity.ok().body(service.find(Long.parseLong(id)));
+	public ResponseEntity<CostumerDTO> find(Long id) {
+		return ResponseEntity.ok().body(service.find(id));
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class CustumerController implements CustumerApi{
 	}
 
 	@Override
-	public ResponseEntity<?> findPaginate(String id) {
-		// TODO Auto-generated method stub
+	public ResponseEntity<?> update(@Valid CostumerDTO dto, Long id) {
 		return null;
 	}
+
 }

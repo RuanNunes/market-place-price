@@ -31,7 +31,7 @@ public interface RuleMarketPlaceApi extends GenericApi<RuleMarketPlaceDTO> {
 	@ApiResponses(value = {
 			@ApiResponse(code = 404, message = "rule não encontrado") })
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<RuleMarketPlaceDTO> find(@PathVariable String id);
+	public ResponseEntity<RuleMarketPlaceDTO> find(@PathVariable Long id);
 	
 	@Override
 	@ApiOperation(value="Busca por todas rules") 
@@ -39,4 +39,13 @@ public interface RuleMarketPlaceApi extends GenericApi<RuleMarketPlaceDTO> {
 			@ApiResponse(code = 404, message = "nenhum rule encontrada") })
 	@GetMapping()
 	public ResponseEntity<List<RuleMarketPlaceDTO>> findAll();
+
+	//TODO descomentar quando for implementado spring security
+	//@PreAuthorize("hasAnyRole('ADMIN')")
+	@Override
+	@ApiOperation(value="Alterar Rule")
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<RuleMarketPlaceDTO> update(@Valid @RequestBody RuleMarketPlaceDTO objDTO, @PathVariable Long id);
+
+
 }
