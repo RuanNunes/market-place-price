@@ -3,8 +3,14 @@ package com.market.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.google.common.collect.ImmutableMap;
+import com.market.contract.dto.PaginatedResourceDTO;
+import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
+import com.market.contract.dto.filters.enuns.RuleMarketPlaceSortDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Sort;
 
 import com.market.contract.dto.RuleMarketPlaceDTO;
 import com.market.mapper.RuleMarketPlaceMapper;
@@ -59,4 +65,18 @@ public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO
 		final RuleMarketPlace updatedEntity = ruleMarketPlaceRepository.save(updateEntity);
 		return mapper.toDto(updatedEntity);
 	  }
+
+	// Pesquisa paginada falta definir todos filtros
+	public PaginatedResourceDTO<RuleMarketPlaceDTO> findPaginated(final RuleMarketPlaceFiltersDTO filters) {
+		final var sortMapping = ImmutableMap.<RuleMarketPlaceSortDTO, Sort>builder()
+				.put(RuleMarketPlaceSortDTO.MOST_RECENT, Sort.by("created_date").descending())
+				.put(RuleMarketPlaceSortDTO.LEAST_RECENT, Sort.by("created_date").ascending())
+				.build();
+
+		final Sort sort = sortMapping.get(filters.getSorter());
+		final PageRequest pageRequest = PageRequest.of(filters.getPage(), filters.getLimit(), sort);
+
+		final var rules = ruleMarketPlaceRepository.findRules(filters.getName(), pageRequest);
+		return mapper.toDto(rules);
+	}
 }
