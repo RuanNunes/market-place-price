@@ -3,6 +3,8 @@ package com.market.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.market.model.RuleMarketPlace;
+import com.market.service.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,11 +57,11 @@ public class CustumerService implements GenericService<CostumerDTO>{
 	}
 
 	@Override
-	public CostumerDTO update(CostumerDTO dto, Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public CostumerDTO update(final CostumerDTO dto, final Long id) {
+		final Costumer entity = costumerRepository.findById(id)
+				.orElseThrow(ResourceNotFoundException.supply());
+		final Costumer updateEntity = mapper.updateEntity(entity, dto);
+		final Costumer updatedEntity = costumerRepository.save(updateEntity);
+		return mapper.toDto(updatedEntity);
 	}
-
-	
-
 }

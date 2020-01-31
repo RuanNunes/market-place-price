@@ -14,6 +14,6 @@ public interface GenericApi<T> {
 	
 	public ResponseEntity<?> find(@PathVariable Long id) ;
 	
-	public ResponseEntity<?> update(@Valid @RequestBody T dto,@PathVariable Long id);
+	public ResponseEntity<?> update(final @Valid @RequestBody T dto,@PathVariable Long id);
 
 }

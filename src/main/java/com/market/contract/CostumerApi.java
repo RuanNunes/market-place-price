@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@RequestMapping("/api/v1/custumers/")
+@RequestMapping("/api/v1/costumers/")
 public interface CostumerApi extends GenericApi<CostumerDTO> {
 	
 	@Override
@@ -35,11 +35,16 @@ public interface CostumerApi extends GenericApi<CostumerDTO> {
 	public ResponseEntity<CostumerDTO> find(@PathVariable Long id);
 	
 	@Override
-	@ApiOperation(value="Busca por todos custumer") 
+	@ApiOperation(value="Busca por todos costumer")
 	@ApiResponses(value = {
-			@ApiResponse(code = 404, message = "nenhum custumer encontrado") })
+			@ApiResponse(code = 404, message = "nenhum costumer encontrado") })
 	@GetMapping
 	public ResponseEntity<List<CostumerDTO>> findAll();
 
-
+	@Override
+	@ApiOperation(value="Alterar por costumer-id")
+	@ApiResponses(value = {
+			@ApiResponse(code = 404, message = "custumer não encontrado") })
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<CostumerDTO> update(final @Valid @RequestBody CostumerDTO dto, Long id);
 }
