@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RequestMapping("/api/v1/costumers/")
-public interface CostumerApi extends GenericApi<CostumerDTO> {
+public interface CostumerApi extends GenericApi<CostumerDTO, CostumerDTO> {
 	
 	@Override
 	@ApiOperation(value="Inclusão de custumer")

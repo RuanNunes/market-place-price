@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.market.contract.dto.PaginatedResourceDTO;
+import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -44,4 +46,10 @@ public class RuleMarketPlaceController implements RuleMarketPlaceApi{
 	public ResponseEntity<RuleMarketPlaceDTO> update(@Valid RuleMarketPlaceDTO objDTO, Long id) {
 		return ResponseEntity.ok().body(service.update(objDTO,id));
 	}
+
+	@Override
+	public ResponseEntity<PaginatedResourceDTO<RuleMarketPlaceDTO>> findPaginate(@Valid RuleMarketPlaceFiltersDTO filters) {
+		return ResponseEntity.ok().body(service.findPaginate(filters));
+	}
+
 }

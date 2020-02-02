@@ -3,6 +3,7 @@ package com.market.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.market.contract.dto.PaginatedResourceDTO;
 import com.market.model.RuleMarketPlace;
 import com.market.service.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import com.market.repository.CostumerRepository;
 import com.market.service.exception.ObjectNotFoundException;
 
 @Service
-public class CustumerService implements GenericService<CostumerDTO>{
+public class CustumerService implements GenericService<CostumerDTO, CostumerDTO>{
 	@Autowired
 	private CostumerRepository costumerRepository;
 	
@@ -63,5 +64,10 @@ public class CustumerService implements GenericService<CostumerDTO>{
 		final Costumer updateEntity = mapper.updateEntity(entity, dto);
 		final Costumer updatedEntity = costumerRepository.save(updateEntity);
 		return mapper.toDto(updatedEntity);
+	}
+
+	@Override
+	public PaginatedResourceDTO<CostumerDTO> findPaginate(CostumerDTO filter) {
+		return null;
 	}
 }

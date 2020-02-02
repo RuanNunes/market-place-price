@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.market.contract.dto.PaginatedResourceDTO;
+import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.cloud.openfeign.SpringQueryMap;
 
 import com.market.contract.dto.RuleMarketPlaceDTO;
 
@@ -19,7 +22,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RequestMapping("/api/v1/rules/")
-public interface RuleMarketPlaceApi extends GenericApi<RuleMarketPlaceDTO> {
+public interface RuleMarketPlaceApi extends GenericApi<RuleMarketPlaceDTO, RuleMarketPlaceFiltersDTO> {
 	
 	@Override
 	@ApiOperation(value="Inclusão de Regras Market Place")
@@ -47,5 +50,10 @@ public interface RuleMarketPlaceApi extends GenericApi<RuleMarketPlaceDTO> {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<RuleMarketPlaceDTO> update(@Valid @RequestBody RuleMarketPlaceDTO objDTO, @PathVariable Long id);
 
+	@ApiOperation(value="Busca De Rules Paginada")
+	@ApiResponses(value = {
+			@ApiResponse(code = 404, message = "nenhuma rule encontrada") })
+	@GetMapping("/paginate")
+	ResponseEntity<PaginatedResourceDTO<RuleMarketPlaceDTO>> findPaginate(@SpringQueryMap @Valid final RuleMarketPlaceFiltersDTO filters);
 
 }

@@ -20,7 +20,7 @@ import com.market.service.exception.ObjectNotFoundException;
 import com.market.service.exception.ResourceNotFoundException;
 
 @Service
-public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO>{
+public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO, RuleMarketPlaceFiltersDTO>{
 	@Autowired
 	private RuleMarketPlaceRepository ruleMarketPlaceRepository;
 	
@@ -67,7 +67,8 @@ public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO
 	  }
 
 	// Pesquisa paginada falta definir todos filtros
-	public PaginatedResourceDTO<RuleMarketPlaceDTO> findPaginated(final RuleMarketPlaceFiltersDTO filters) {
+	@Override
+	public PaginatedResourceDTO<RuleMarketPlaceDTO> findPaginate(final RuleMarketPlaceFiltersDTO filters) {
 		final var sortMapping = ImmutableMap.<RuleMarketPlaceSortDTO, Sort>builder()
 				.put(RuleMarketPlaceSortDTO.MOST_RECENT, Sort.by("created_date").descending())
 				.put(RuleMarketPlaceSortDTO.LEAST_RECENT, Sort.by("created_date").ascending())
@@ -75,7 +76,7 @@ public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO
 
 		final Sort sort = sortMapping.get(filters.getSorter());
 		final PageRequest pageRequest = PageRequest.of(filters.getPage(), filters.getLimit(), sort);
-
+		filters.setName("%" + filters.getName() + "%");
 		final var rules = ruleMarketPlaceRepository.findRules(filters.getName(), pageRequest);
 		return mapper.toDto(rules);
 	}

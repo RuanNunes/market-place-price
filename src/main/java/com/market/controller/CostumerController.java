@@ -44,4 +44,9 @@ public class CostumerController implements CostumerApi {
 	public ResponseEntity<CostumerDTO> update(@Valid @RequestBody CostumerDTO dto, Long id) {
 		return ResponseEntity.ok().body(service.update(dto, id));
 	}
+
+	@Override
+	public ResponseEntity<?> findPaginate(@Valid CostumerDTO filters) {
+		return null;
+	}
 }
