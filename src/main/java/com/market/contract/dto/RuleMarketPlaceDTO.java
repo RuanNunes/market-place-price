@@ -2,9 +2,10 @@ package com.market.contract.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-
+import java.time.LocalDateTime;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,4 +33,10 @@ public class RuleMarketPlaceDTO implements Serializable{
 	private Integer defaultShippingValue;
 	
 	private BigDecimal flatRate;
+
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss.SSS")
+	private LocalDateTime createdDate;
+
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss.SSS")
+	private LocalDateTime lastModifiedDate;
 }

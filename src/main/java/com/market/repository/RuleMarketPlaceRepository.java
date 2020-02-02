@@ -11,6 +11,6 @@ import com.market.model.RuleMarketPlace;
 public interface RuleMarketPlaceRepository extends JpaRepository<RuleMarketPlace, Long> {
 
     @Query(value = "select * from rule_market_place r" +
-                    " where r.name like :name", nativeQuery = true)
+                    " where r.name like %?1%", nativeQuery = true)
     Page<RuleMarketPlace> findRules(String name, Pageable page);
 }
