@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Builder
@@ -20,16 +22,16 @@ public class ProductDTO implements Serializable {
 
     private Long id;
     @NotNull
-    private Costumer costumer;
-    @NotNull
-    private RuleMarketPlace ruleMarketPlaceId;
+    private CostumerDTO costumer;
+
+    private Set<RuleMarketPlaceDTO> rules = new HashSet<>();
     @NotNull
     private String name;
-    @NotNull
+    
     private String description;
-    @NotNull
+
     private String sku;
-    @NotNull
+
     private BigDecimal price;
     @NotNull
     private BigDecimal costPrice;
