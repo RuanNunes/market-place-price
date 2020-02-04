@@ -1,5 +1,7 @@
 package com.market.service;
 
+import com.market.contract.dto.CostumerDTO;
+import com.market.contract.dto.PaginatedResourceDTO;
 import com.market.contract.dto.ProductDTO;
 import com.market.mapper.ProductMapper;
 import com.market.model.Product;
@@ -13,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductService implements GenericService<ProductDTO> {
+public class ProductService implements GenericService<ProductDTO, ProductDTO> {
 
     @Autowired
     private ProductRepository productRepository;
@@ -41,7 +43,7 @@ public class ProductService implements GenericService<ProductDTO> {
     }
 
     @Override
-    public ProductDTO find(Long id) {
+    public ProductDTO find(final Long id) {
 
         Optional<Product> obj = productRepository.findById(id);
 
@@ -57,4 +59,8 @@ public class ProductService implements GenericService<ProductDTO> {
         return productMapper.toDto(updatedEntity);
     }
 
+    @Override
+    public PaginatedResourceDTO<ProductDTO> findPaginate(ProductDTO filter) {
+        return null;
+    }
 }

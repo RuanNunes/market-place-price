@@ -1,6 +1,7 @@
 package com.market.controller;
 
 import com.market.contract.ProductApi;
+import com.market.contract.dto.CostumerDTO;
 import com.market.contract.dto.ProductDTO;
 import com.market.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,8 @@ public class ProductController implements ProductApi {
     @Autowired
     private ProductService service;
 
-    public ProductController(ProductService service) {
-        this.service = service;
-    }
-
     @Override
-    public ResponseEntity<Void> save(@RequestBody @Valid ProductDTO dto) {
+    public ResponseEntity<Void> save(final @RequestBody @Valid ProductDTO dto) {
         final var obj = service.save(dto);
         //retorna url com novo registro inserido
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -34,11 +31,14 @@ public class ProductController implements ProductApi {
     }
 
     @Override
-    public ResponseEntity<ProductDTO> find(Long id) { return ResponseEntity.ok().body(service.find(id)); }
+    public ResponseEntity<ProductDTO> find(final Long id) { return ResponseEntity.ok().body(service.find(id)); }
 
     @Override
     public ResponseEntity<List<ProductDTO>> findAll() { return ResponseEntity.ok().body(service.findAll()); }
 
     @Override
-    public ResponseEntity<ProductDTO> update(@Valid @RequestBody ProductDTO dto, Long id) { return ResponseEntity.ok().body(service.update(dto, id)); }
+    public ResponseEntity<ProductDTO> update(final @Valid @RequestBody ProductDTO dto, Long id) { return ResponseEntity.ok().body(service.update(dto, id)); }
+
+    @Override
+    public ResponseEntity<?> findPaginate(@Valid ProductDTO filters) { return null; }
 }
