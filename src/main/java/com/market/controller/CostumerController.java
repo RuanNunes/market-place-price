@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.market.contract.dto.PaginatedResourceDTO;
+import com.market.contract.dto.filters.CostumerFiltersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,16 +15,16 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.market.contract.CostumerApi;
 import com.market.contract.dto.CostumerDTO;
-import com.market.service.CustumerService;
+import com.market.service.CostumerService;
 
 @Valid
 @RestController
 public class CostumerController implements CostumerApi {
 	@Autowired
-	private CustumerService service;
-	
+	private CostumerService service;
+
 	@Override
-	public ResponseEntity<Void> save(@Valid @RequestBody CostumerDTO custumer){
+	public ResponseEntity<Void> save(@Valid @RequestBody CostumerDTO custumer) {
 		final var obj = service.save(custumer);
 		//retorna url com novo registro inserido
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -46,7 +48,8 @@ public class CostumerController implements CostumerApi {
 	}
 
 	@Override
-	public ResponseEntity<?> findPaginate(@Valid CostumerDTO filters) {
-		return null;
+	public ResponseEntity<PaginatedResourceDTO<CostumerDTO>> findPaginate(@Valid CostumerFiltersDTO filters) {
+		return ResponseEntity.ok().body(service.findPaginate(filters));
 	}
 }
+

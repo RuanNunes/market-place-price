@@ -1,5 +1,7 @@
 package com.market.contract.dto.filters;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
+import com.market.contract.dto.filters.enuns.BaseSortDTO;
 import com.market.contract.dto.filters.enuns.RuleMarketPlaceSortDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,13 +15,16 @@ import javax.validation.constraints.Min;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class RuleMarketPlaceFiltersDTO {
+public class CostumerFiltersDTO {
 
     @Builder.Default
     private String name = "";
 
     @Builder.Default
-    private RuleMarketPlaceSortDTO sorter = RuleMarketPlaceSortDTO.MOST_RECENT;
+    private String transactionAdditionalData = "{}";
+
+    @Builder.Default
+    private BaseSortDTO sorter = BaseSortDTO.MOST_RECENT;
 
     @Min(0)
     @Builder.Default
@@ -30,7 +35,7 @@ public class RuleMarketPlaceFiltersDTO {
     @Builder.Default
     private Integer limit = 10;
 
-    public static RuleMarketPlaceFiltersDTO of() {
-        return RuleMarketPlaceFiltersDTO.builder().build();
+    public static CostumerFiltersDTO of() {
+        return CostumerFiltersDTO.builder().build();
     }
 }
