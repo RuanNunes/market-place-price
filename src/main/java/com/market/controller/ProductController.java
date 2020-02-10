@@ -2,7 +2,9 @@ package com.market.controller;
 
 import com.market.contract.ProductApi;
 import com.market.contract.dto.CostumerDTO;
+import com.market.contract.dto.PaginatedResourceDTO;
 import com.market.contract.dto.ProductDTO;
+import com.market.contract.dto.filters.ProductFiltersDTO;
 import com.market.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,8 +39,12 @@ public class ProductController implements ProductApi {
     public ResponseEntity<List<ProductDTO>> findAll() { return ResponseEntity.ok().body(service.findAll()); }
 
     @Override
-    public ResponseEntity<ProductDTO> update(final @Valid @RequestBody ProductDTO dto, Long id) { return ResponseEntity.ok().body(service.update(dto, id)); }
+    public ResponseEntity<ProductDTO> update(final @Valid @RequestBody ProductDTO dto, Long id) {
+        return ResponseEntity.ok().body(service.update(dto, id));
+    }
 
     @Override
-    public ResponseEntity<?> findPaginate(@Valid ProductDTO filters) { return null; }
+    public ResponseEntity<PaginatedResourceDTO<ProductDTO>> findPaginate(@Valid ProductFiltersDTO filters) {
+        return ResponseEntity.ok().body(service.findPaginate(filters));
+    }
 }

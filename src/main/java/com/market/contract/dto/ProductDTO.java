@@ -1,7 +1,5 @@
 package com.market.contract.dto;
 
-import com.market.model.Costumer;
-import com.market.model.RuleMarketPlace;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,13 +16,16 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDTO implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     private Long id;
+
     @NotNull
     private Long costumerId;
 
     private Set<Long> rulesId = new HashSet<>();
+
     @NotNull
     private String name;
 
@@ -33,6 +34,7 @@ public class ProductDTO implements Serializable {
     private String sku;
 
     private BigDecimal price;
+
     @NotNull
     private BigDecimal costPrice;
 
