@@ -3,16 +3,20 @@ package com.market.service;
 import com.market.contract.dto.CostumerDTO;
 import com.market.contract.dto.PaginatedResourceDTO;
 import com.market.contract.dto.ProductDTO;
+import com.market.mapper.CostumerMapper;
 import com.market.mapper.ProductMapper;
+import com.market.model.Costumer;
 import com.market.model.Product;
+import com.market.model.RuleMarketPlace;
+import com.market.repository.CostumerRepository;
 import com.market.repository.ProductRepository;
+import com.market.repository.RuleMarketPlaceRepository;
 import com.market.service.exception.ObjectNotFoundException;
 import com.market.service.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ProductService implements GenericService<ProductDTO, ProductDTO> {
@@ -23,13 +27,35 @@ public class ProductService implements GenericService<ProductDTO, ProductDTO> {
     @Autowired
     private ProductMapper productMapper;
 
+    @Autowired
+    private CostumerRepository costumerRepository;
+
+    @Autowired
+    private RuleMarketPlaceRepository ruleMarketPlaceRepository;
+
     @Override
     public ProductDTO save(final ProductDTO dto) {
-        if((dto.getId() != null))
+        if(dto.getId() != null || dto.getId() == 0)
             dto.setId(null);
 
+
         final Product entity = productMapper.toEntity(dto);
-        return productMapper.toDto(productRepository.save(entity));
+
+        if (dto.getRulesId() != null || !dto.getRulesId().isEmpty()){
+            final var rules = new HashSet<RuleMarketPlace>();
+            for (Long idRule : dto.getRulesId()) {
+                rules.add(ruleMarketPlaceRepository.findById(idRule)
+                        .orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+idRule+", Tipo: "+ RuleMarketPlace.class.getName())));
+            }
+            entity.setRules(rules);
+        }
+
+        final Costumer costumer = costumerRepository.findById(dto.getCostumerId())
+                .orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+dto.getCostumerId()+", Tipo: "+Costumer.class.getName()));
+
+        entity.setCostumer(costumer);
+        final var productSave = productRepository.save(entity);
+        return productMapper.toDto(productSave);
     }
 
     @Override

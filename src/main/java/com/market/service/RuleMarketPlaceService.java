@@ -77,7 +77,8 @@ public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO
 		final Sort sort = sortMapping.get(filters.getSorter());
 		final PageRequest pageRequest = PageRequest.of(filters.getPage(), filters.getLimit(), sort);
 
-		final var rules = ruleMarketPlaceRepository.findRules(filters.getName(), pageRequest);
-		return mapper.toDto(rules);
+//		final var rules = ruleMarketPlaceRepository.findDistinctByNameContaining(filters.getName(), pageRequest);
+		final var teste = ruleMarketPlaceRepository.findRules(filters.getName(), pageRequest);
+		return mapper.toDto(teste);
 	}
 }

@@ -44,12 +44,16 @@ public class GenericMapper<Entity, Dto> {
 	    return entities.stream().map(it -> toDto(it)).collect(Collectors.toList());
 	  }
 
-	  public PaginatedResourceDTO<Dto> toDto(final Page<Entity> page) {
+	public List<Entity> toEntity(final List<Dto> Dtos) {
+		return Dtos.stream().map(it -> toEntity(it)).collect(Collectors.toList());
+	}
+
+	public PaginatedResourceDTO<Dto> toDto(final Page<Entity> page) {
 	    return PaginatedResourceDTO.<Dto>builder()
 	        .records(toDto(page.getContent()))
 	        .totalRecords(page.getTotalElements())
 	        .thisPage(page.getPageable().getPageNumber())
 	        .lastPage(page.getTotalPages() != 0 ? page.getTotalPages() - 1 : 0)
 	        .build();
-	  }
+	}
 }

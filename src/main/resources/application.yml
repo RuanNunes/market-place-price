@@ -1,10 +1,13 @@
 spring:
-    datasource.url: jdbc:postgresql://db.jeudi.dev:5432/market-db
-    datasource.username: market-app
-    datasource.password: 1123
+#    datasource.url: jdbc:postgresql://db.jeudi.dev:5432/market-db
+#    datasource.username: market-app
+#    datasource.password: 1123
+    datasource.url: jdbc:postgresql://localhost:5432/market-db
+    datasource.username: postgres
+    datasource.password: 123
     jpa.hibernate.ddl-auto: update
     jpa.show-sql: true
-    jpa.properties.hibernate.format_sql: false
+    jpa.properties.hibernate.format_sql: true
     jpa.properties.hibernate.temp.use_jdbc_metadata_defaults: false
     jpa.database-platform: org.hibernate.dialect.PostgreSQL9Dialect
 

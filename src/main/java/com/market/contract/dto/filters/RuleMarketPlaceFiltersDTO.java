@@ -29,7 +29,7 @@ public class RuleMarketPlaceFiltersDTO {
     @Max(50)
     @Builder.Default
     private Integer limit = 10;
-
+    
     public static RuleMarketPlaceFiltersDTO of() {
         return RuleMarketPlaceFiltersDTO.builder().build();
     }

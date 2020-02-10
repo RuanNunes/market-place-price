@@ -10,35 +10,33 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@SuperBuilder
 public class RuleMarketPlace extends PersistentEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
-	 
+
 	@Column(nullable = false, unique = true)
 	private String name;
-	
+
 	@NotNull
 	private String description;
-	
+
 	@NotNull
 	private BigDecimal discountPercentage;
-	
+
 	private Integer defaultShippingValue;
-	
+
 	private BigDecimal flatRate;
 
-	@ManyToMany(mappedBy = "rules")
+	@ManyToMany( mappedBy = "rules")
 	private List<Product> products = new ArrayList<>();
 }

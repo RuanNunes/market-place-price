@@ -22,12 +22,12 @@ public class ProductDTO implements Serializable {
 
     private Long id;
     @NotNull
-    private CostumerDTO costumer;
+    private Long costumerId;
 
-    private Set<RuleMarketPlaceDTO> rules = new HashSet<>();
+    private Set<Long> rulesId = new HashSet<>();
     @NotNull
     private String name;
-    
+
     private String description;
 
     private String sku;
