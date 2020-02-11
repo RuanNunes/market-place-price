@@ -3,7 +3,7 @@ package com.market;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.market.client.CostumerClient;
 import com.market.client.RuleMarketPlaceClient;
-import com.market.repository.CostumerRepository;
+import com.market.repository.CustomerRepository;
 import com.market.repository.RuleMarketPlaceRepository;
 import com.market.utils.WebClientUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class BaseTests {
 	protected ObjectMapper objectMapper;
 
 	@Autowired
-	protected CostumerRepository costumerRepository;
+	protected CustomerRepository costumerRepository;
 
 	@Autowired
 	protected RuleMarketPlaceRepository ruleMarketPlaceRepository;

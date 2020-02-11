@@ -7,8 +7,6 @@ import com.google.common.collect.ImmutableMap;
 import com.market.contract.dto.PaginatedResourceDTO;
 import com.market.contract.dto.filters.CostumerFiltersDTO;
 import com.market.contract.dto.filters.enuns.BaseSortDTO;
-import com.market.contract.dto.filters.enuns.RuleMarketPlaceSortDTO;
-import com.market.model.RuleMarketPlace;
 import com.market.service.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -17,14 +15,14 @@ import org.springframework.stereotype.Service;
 
 import com.market.contract.dto.CostumerDTO;
 import com.market.mapper.CostumerMapper;
-import com.market.model.Costumer;
-import com.market.repository.CostumerRepository;
+import com.market.model.Customer;
+import com.market.repository.CustomerRepository;
 import com.market.service.exception.ObjectNotFoundException;
 
 @Service
 public class CostumerService implements GenericService<CostumerDTO, CostumerFiltersDTO>{
 	@Autowired
-	private CostumerRepository costumerRepository;
+	private CustomerRepository costumerRepository;
 	
 	@Autowired
 	private CostumerMapper mapper;
@@ -34,7 +32,7 @@ public class CostumerService implements GenericService<CostumerDTO, CostumerFilt
 		if((dto.getId() != null)) 
 			dto.setId(null);
 		
-		final Costumer entity = mapper.toEntity(dto);
+		final Customer entity = mapper.toEntity(dto);
 		return mapper.toDto(costumerRepository.save(entity));
 	}
 	
@@ -58,17 +56,17 @@ public class CostumerService implements GenericService<CostumerDTO, CostumerFilt
 //			throw new AuthorizationException("Acesso negado.");
 //		}
 		
-		Optional<Costumer> obj = costumerRepository.findById(id);
+		Optional<Customer> obj = costumerRepository.findById(id);
 		
-		return mapper.toDto(obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+id+", Tipo: "+Costumer.class.getName()))); 
+		return mapper.toDto(obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+id+", Tipo: "+ Customer.class.getName())));
 	}
 
 	@Override
 	public CostumerDTO update(final CostumerDTO dto, final Long id) {
-		final Costumer entity = costumerRepository.findById(id)
+		final Customer entity = costumerRepository.findById(id)
 				.orElseThrow(ResourceNotFoundException.supply());
-		final Costumer updateEntity = mapper.updateEntity(entity, dto);
-		final Costumer updatedEntity = costumerRepository.save(updateEntity);
+		final Customer updateEntity = mapper.updateEntity(entity, dto);
+		final Customer updatedEntity = costumerRepository.save(updateEntity);
 		return mapper.toDto(updatedEntity);
 	}
 

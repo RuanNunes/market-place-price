@@ -18,7 +18,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 @Entity
-public class Costumer extends PersistentEntity implements Serializable{
+public class Customer extends PersistentEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@NotNull
@@ -36,6 +36,6 @@ public class Costumer extends PersistentEntity implements Serializable{
 	@NotNull
 	private String category;
 
-	@OneToMany(mappedBy = "costumer")
+	@OneToMany(mappedBy = "customer")
 	private List<Product> products = new ArrayList<>();
 }

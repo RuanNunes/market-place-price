@@ -1,6 +1,6 @@
 package com.market.repository;
 
-import com.market.model.Costumer;
+import com.market.model.Customer;
 import com.market.model.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +22,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> findDistinctByNameContaining(String name, Pageable page);
 
     @Transactional(readOnly = true)
-    Page<Product> findDistinctByNameContainingAndCostumersIn(String name, List<Costumer> costumers, Pageable page);
+    Page<Product> findDistinctByNameContainingAndCostumersIn(String name, List<Customer> costumers, Pageable page);
 
 }

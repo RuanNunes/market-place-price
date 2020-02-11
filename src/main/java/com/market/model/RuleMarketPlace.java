@@ -5,9 +5,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -24,11 +22,16 @@ import lombok.NoArgsConstructor;
 public class RuleMarketPlace extends PersistentEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	@Column(nullable = false, unique = true)
+	@NotNull
 	private String name;
 
 	@NotNull
 	private String description;
+
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "customer_id")
+	private Customer customer;
 
 	@NotNull
 	private BigDecimal discountPercentage;

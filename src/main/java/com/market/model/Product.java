@@ -29,8 +29,8 @@ public class Product extends PersistentEntity implements Serializable{
 
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "costumer_id")
-	private Costumer costumer;
+	@JoinColumn(name = "customer_id")
+	private Customer customer;
 
 	@ManyToMany
 	//Cria tabela auxiliar para fazer ligação de muitos para muitos entre rule e produtos
