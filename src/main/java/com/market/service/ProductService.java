@@ -1,8 +1,13 @@
 package com.market.service;
 
+import com.google.common.collect.ImmutableMap;
 import com.market.contract.dto.CostumerDTO;
 import com.market.contract.dto.PaginatedResourceDTO;
 import com.market.contract.dto.ProductDTO;
+import com.market.contract.dto.filters.ProductFiltersDTO;
+import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
+import com.market.contract.dto.filters.enuns.ProductSortDTO;
+import com.market.contract.dto.filters.enuns.RuleMarketPlaceSortDTO;
 import com.market.mapper.CostumerMapper;
 import com.market.mapper.ProductMapper;
 import com.market.model.Costumer;
@@ -14,12 +19,14 @@ import com.market.repository.RuleMarketPlaceRepository;
 import com.market.service.exception.ObjectNotFoundException;
 import com.market.service.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
-public class ProductService implements GenericService<ProductDTO, ProductDTO> {
+public class ProductService implements GenericService<ProductDTO, ProductFiltersDTO> {
 
     @Autowired
     private ProductRepository productRepository;
@@ -73,7 +80,8 @@ public class ProductService implements GenericService<ProductDTO, ProductDTO> {
 
         Optional<Product> obj = productRepository.findById(id);
 
-        return productMapper.toDto(obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+id+", Tipo: "+Product.class.getName())));
+        return productMapper.toDto(obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado!" +
+                " Id: "+id+", Tipo: "+ Product.class.getName())));
     }
 
     @Override
@@ -86,7 +94,24 @@ public class ProductService implements GenericService<ProductDTO, ProductDTO> {
     }
 
     @Override
-    public PaginatedResourceDTO<ProductDTO> findPaginate(ProductDTO filter) {
+    public PaginatedResourceDTO<ProductDTO> findPaginate(ProductFiltersDTO filter) {
         return null;
     }
+
+//    @Override
+//    public PaginatedResourceDTO<ProductDTO> findPaginate(final ProductFiltersDTO filters,
+//                                                         final RuleMarketPlaceFiltersDTO ruleFilters) {
+//
+//        final var sortMapping = ImmutableMap.<ProductSortDTO, Sort>builder()
+//                .put(ProductSortDTO.MOST_RECENT, Sort.by("created_date").descending())
+//                .put(ProductSortDTO.LEAST_RECENT, Sort.by("created_date").ascending())
+//                .build();
+//
+//        final Sort sort = sortMapping.get(filters.getSorter());
+//        final PageRequest pageRequest = PageRequest.of(filters.getPage(), filters.getLimit(), sort);
+//
+//        final var teste = productRepository.findProducts(filters.getName(), pageRequest);
+//
+//        return productMapper.toDto(teste);
+   // }
 }
