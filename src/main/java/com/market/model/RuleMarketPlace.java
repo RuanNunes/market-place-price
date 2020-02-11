@@ -29,7 +29,7 @@ public class RuleMarketPlace extends PersistentEntity implements Serializable{
 	private String description;
 
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
@@ -40,6 +40,7 @@ public class RuleMarketPlace extends PersistentEntity implements Serializable{
 
 	private BigDecimal flatRate;
 
-	@ManyToMany( mappedBy = "rules")
-	private List<Product> products = new ArrayList<>();
+	//TODO validar futuramente se existe necessidade de aver ligação com product
+//	@ManyToMany( mappedBy = "rules")
+//	private List<Product> products = new ArrayList<>();
 }

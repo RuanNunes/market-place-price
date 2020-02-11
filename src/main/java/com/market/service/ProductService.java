@@ -40,19 +40,20 @@ public class ProductService implements GenericService<ProductDTO, ProductFilters
 
         final Product entity = productMapper.toEntity(dto);
 
-        if (dto.getRulesId() != null || !dto.getRulesId().isEmpty()){
-            final var rules = new HashSet<RuleMarketPlace>();
-            for (Long idRule : dto.getRulesId()) {
-                rules.add(ruleMarketPlaceRepository.findById(idRule)
-                        .orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+idRule+", Tipo: "+ RuleMarketPlace.class.getName())));
-            }
-            entity.setRules(rules);
-        }
+        //TODO descomentar se adicionar ligação entre product e rule
+//        if (dto.getRulesId() != null || !dto.getRulesId().isEmpty()){
+//            final var rules = new HashSet<RuleMarketPlace>();
+//            for (Long idRule : dto.getRulesId()) {
+//                rules.add(ruleMarketPlaceRepository.findById(idRule)
+//                        .orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+idRule+", Tipo: "+ RuleMarketPlace.class.getName())));
+//            }
+//            entity.setRules(rules);
+//        }
 
         final Customer costumer = costumerRepository.findById(dto.getCostumerId())
                 .orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+dto.getCostumerId()+", Tipo: "+ Customer.class.getName()));
 
-        entity.setCostumer(costumer);
+        entity.setCustomer(costumer);
         final var productSave = productRepository.save(entity);
         return productMapper.toDto(productSave);
     }

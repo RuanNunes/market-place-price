@@ -37,5 +37,8 @@ public class Customer extends PersistentEntity implements Serializable{
 	private String category;
 
 	@OneToMany(mappedBy = "customer")
+	private List<RuleMarketPlace> rules = new ArrayList<>();
+
+	@OneToMany(mappedBy = "customer")
 	private List<Product> products = new ArrayList<>();
 }

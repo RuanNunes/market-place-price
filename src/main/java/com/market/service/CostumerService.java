@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.google.common.collect.ImmutableMap;
 import com.market.contract.dto.PaginatedResourceDTO;
-import com.market.contract.dto.filters.CostumerFiltersDTO;
+import com.market.contract.dto.filters.CustomerFiltersDTO;
 import com.market.contract.dto.filters.enuns.BaseSortDTO;
 import com.market.service.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import com.market.repository.CustomerRepository;
 import com.market.service.exception.ObjectNotFoundException;
 
 @Service
-public class CostumerService implements GenericService<CostumerDTO, CostumerFiltersDTO>{
+public class CostumerService implements GenericService<CostumerDTO, CustomerFiltersDTO>{
 	@Autowired
 	private CustomerRepository costumerRepository;
 	
@@ -71,7 +71,7 @@ public class CostumerService implements GenericService<CostumerDTO, CostumerFilt
 	}
 
 	@Override
-	public PaginatedResourceDTO<CostumerDTO> findPaginate(CostumerFiltersDTO filter) {
+	public PaginatedResourceDTO<CostumerDTO> findPaginate(CustomerFiltersDTO filter) {
 		final var sortMapping = ImmutableMap.<BaseSortDTO, Sort>builder()
 				.put(BaseSortDTO.MOST_RECENT, Sort.by("created_date").descending())
 				.put(BaseSortDTO.LEAST_RECENT, Sort.by("created_date").ascending())

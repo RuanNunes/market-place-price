@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import com.market.contract.dto.ProductDTO;
-import com.market.contract.dto.filters.CostumerFiltersDTO;
+import com.market.contract.dto.filters.CustomerFiltersDTO;
 import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
 import com.market.mapper.CostumerMapper;
 import com.market.mapper.RuleMarketPlaceMapper;
@@ -105,7 +105,7 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 
 	private Customer findCostumer(String name){
 		return costumerMapper.toEntity(costumerService
-				.findPaginate(CostumerFiltersDTO
+				.findPaginate(CustomerFiltersDTO
 						.builder()
 						.name(name)
 						.limit(Integer.valueOf(1))

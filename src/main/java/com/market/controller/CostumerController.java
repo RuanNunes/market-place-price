@@ -6,7 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.market.contract.dto.PaginatedResourceDTO;
-import com.market.contract.dto.filters.CostumerFiltersDTO;
+import com.market.contract.dto.filters.CustomerFiltersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,7 +48,7 @@ public class CostumerController implements CostumerApi {
 	}
 
 	@Override
-	public ResponseEntity<PaginatedResourceDTO<CostumerDTO>> findPaginate(@Valid CostumerFiltersDTO filters) {
+	public ResponseEntity<PaginatedResourceDTO<CostumerDTO>> findPaginate(@Valid CustomerFiltersDTO filters) {
 		return ResponseEntity.ok().body(service.findPaginate(filters));
 	}
 }

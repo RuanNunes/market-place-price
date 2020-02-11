@@ -24,6 +24,9 @@ public class RuleMarketPlaceDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+
+	@NotNull
+	private Long customerId;
 	
 	@NotNull
 	private String name;
@@ -45,6 +48,7 @@ public class RuleMarketPlaceDTO implements Serializable{
 	private LocalDateTime lastModifiedDate;
 
 	//faz com que omite a busca de produtos pois ja foi serializado do lado de produtos
-	@JsonIgnore
-	private List<ProductDTO> products = new ArrayList<>();
+	//TODO descomentar se futuramente ouver ligação entre rule e product
+//	@JsonIgnore
+//	private List<ProductDTO> products = new ArrayList<>();
 }

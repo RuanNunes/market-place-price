@@ -13,12 +13,7 @@ import com.market.model.Product;
 import com.market.model.RuleMarketPlace;
 @Repository
 public interface RuleMarketPlaceRepository extends JpaRepository<RuleMarketPlace, Long> {
-	static String sql = "select * from rule_market_place rmp " 
-	+ " left join product_rule pro on" 
-	+ " pro.rule_id = rmp.id "
-	+ " left join product p on" 
-	+ " p.id  = pro.product_id" 
-
+	static String sql = "select * from rule_market_place rmp "
 	+ " where rmp.name like %:name%";
 	
     @Query(value = sql, nativeQuery = true)
@@ -27,6 +22,6 @@ public interface RuleMarketPlaceRepository extends JpaRepository<RuleMarketPlace
     @Transactional(readOnly = true)
 	Page<RuleMarketPlace> findDistinctByNameContaining(String name,  Pageable page);
     
-    @Transactional(readOnly = true)
-	Page<RuleMarketPlace> findDistinctByNameContainingAndProductsIn(String name, List<Product> products, Pageable page);
+//    @Transactional(readOnly = true)
+//	Page<RuleMarketPlace> findDistinctByNameContainingAndProductsIn(String name, List<Product> products, Pageable page);
 }

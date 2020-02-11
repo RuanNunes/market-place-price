@@ -5,11 +5,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -28,17 +24,19 @@ public class Product extends PersistentEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
-	@ManyToMany
+
 	//Cria tabela auxiliar para fazer ligação de muitos para muitos entre rule e produtos
-	@JoinTable(name = "product_rule",
-			joinColumns = @JoinColumn(name = "product_id"),
-			inverseJoinColumns = @JoinColumn(name = "rule_id" )
-	)
-	private Set<RuleMarketPlace> rules = new HashSet<>();
+	//TODO analizar futuramente se precisa de ligação entre rule e product
+//	@ManyToMany
+//	@JoinTable(name = "product_rule",
+//			joinColumns = @JoinColumn(name = "product_id"),
+//			inverseJoinColumns = @JoinColumn(name = "rule_id" )
+//	)
+//	private Set<RuleMarketPlace> rules = new HashSet<>();
 
 	@NotNull
 	private String name;

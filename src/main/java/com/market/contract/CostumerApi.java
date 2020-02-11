@@ -5,10 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.market.contract.dto.PaginatedResourceDTO;
-import com.market.contract.dto.RuleMarketPlaceDTO;
-import com.market.contract.dto.filters.CostumerFiltersDTO;
-import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
-import org.hibernate.validator.internal.constraintvalidators.bv.time.futureorpresent.FutureOrPresentValidatorForDate;
+import com.market.contract.dto.filters.CustomerFiltersDTO;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +22,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RequestMapping("/api/v1/costumers/")
-public interface CostumerApi extends GenericApi<CostumerDTO, CostumerFiltersDTO> {
+public interface CostumerApi extends GenericApi<CostumerDTO, CustomerFiltersDTO> {
 	
 	@Override
 	@ApiOperation(value="Inclusão de custumer")
@@ -57,5 +54,5 @@ public interface CostumerApi extends GenericApi<CostumerDTO, CostumerFiltersDTO>
 	@ApiResponses(value = {
 			@ApiResponse(code = 404, message = "nenhum cliente encontrado") })
 	@GetMapping("/paginate")
-	ResponseEntity<PaginatedResourceDTO<CostumerDTO>> findPaginate(@SpringQueryMap @Valid final CostumerFiltersDTO filters);
+	ResponseEntity<PaginatedResourceDTO<CostumerDTO>> findPaginate(@SpringQueryMap @Valid final CustomerFiltersDTO filters);
 }

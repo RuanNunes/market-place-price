@@ -7,6 +7,8 @@ import com.google.common.collect.ImmutableMap;
 import com.market.contract.dto.PaginatedResourceDTO;
 import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
 import com.market.contract.dto.filters.enuns.RuleMarketPlaceSortDTO;
+import com.market.model.Customer;
+import com.market.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,9 @@ public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO
 	
 	@Autowired 
 	private RuleMarketPlaceMapper mapper;
+
+	@Autowired
+	private CustomerRepository customerRepository;
 	
 	@Override
 	public RuleMarketPlaceDTO save(final RuleMarketPlaceDTO dto) {
@@ -33,7 +38,11 @@ public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO
 
 		if(!(entity.getId() == null)) 
 			entity.setId(null);
-		
+
+		final Customer customer = customerRepository.findById(dto.getCustomerId()).orElseThrow(() -> new ObjectNotFoundException(    "Objeto não encontrado! Id: "
+				+ dto.getCustomerId() + ", Tipo: " + Customer.class.getName()));
+
+		entity.setCustomer(customer);
 		return mapper.toDto(ruleMarketPlaceRepository.save(entity));
 	}
 	
