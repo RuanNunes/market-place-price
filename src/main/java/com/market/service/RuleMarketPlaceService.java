@@ -3,20 +3,20 @@ package com.market.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.google.common.collect.ImmutableMap;
-import com.market.contract.dto.PaginatedResourceDTO;
-import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
-import com.market.contract.dto.filters.enuns.RuleMarketPlaceSortDTO;
-import com.market.model.Customer;
-import com.market.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
+import com.google.common.collect.ImmutableMap;
+import com.market.contract.dto.PaginatedResourceDTO;
 import com.market.contract.dto.RuleMarketPlaceDTO;
+import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
+import com.market.contract.dto.filters.enuns.RuleMarketPlaceSortDTO;
 import com.market.mapper.RuleMarketPlaceMapper;
+import com.market.model.Customer;
 import com.market.model.RuleMarketPlace;
+import com.market.repository.CustomerRepository;
 import com.market.repository.RuleMarketPlaceRepository;
 import com.market.service.exception.ObjectNotFoundException;
 import com.market.service.exception.ResourceNotFoundException;

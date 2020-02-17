@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.market.contract.dto.PaginatedResourceDTO;
-import com.market.contract.dto.filters.CustomerFiltersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +13,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.market.contract.CostumerApi;
 import com.market.contract.dto.CostumerDTO;
+import com.market.contract.dto.PaginatedResourceDTO;
+import com.market.contract.dto.filters.CustomerFiltersDTO;
 import com.market.service.CostumerService;
 
 @Valid

@@ -1,21 +1,22 @@
 package com.market.service;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.market.contract.dto.PaginatedResourceDTO;
 import com.market.contract.dto.ProductDTO;
 import com.market.contract.dto.filters.ProductFiltersDTO;
 import com.market.mapper.ProductMapper;
 import com.market.model.Customer;
 import com.market.model.Product;
-import com.market.model.RuleMarketPlace;
 import com.market.repository.CustomerRepository;
 import com.market.repository.ProductRepository;
 import com.market.repository.RuleMarketPlaceRepository;
 import com.market.service.exception.ObjectNotFoundException;
 import com.market.service.exception.ResourceNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.*;
 
 @Service
 public class ProductService implements GenericService<ProductDTO, ProductFiltersDTO> {

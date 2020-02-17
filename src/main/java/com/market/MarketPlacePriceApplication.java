@@ -1,29 +1,33 @@
 package com.market;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.market.contract.dto.ProductDTO;
-import com.market.contract.dto.filters.CustomerFiltersDTO;
-import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
-import com.market.mapper.CostumerMapper;
-import com.market.mapper.RuleMarketPlaceMapper;
-import com.market.model.Customer;
-import com.market.repository.CustomerRepository;
-import com.market.repository.ProductRepository;
-import com.market.service.CostumerService;
-import com.market.service.ProductService;
-import com.market.service.exception.DataIntegrityException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.market.contract.dto.ProductDTO;
 import com.market.contract.dto.RuleMarketPlaceDTO;
+import com.market.contract.dto.filters.CustomerFiltersDTO;
+import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
+import com.market.mapper.CostumerMapper;
+import com.market.mapper.RuleMarketPlaceMapper;
+import com.market.model.Customer;
 import com.market.model.RuleMarketPlace;
+import com.market.repository.CustomerRepository;
+import com.market.repository.ProductRepository;
 import com.market.repository.RuleMarketPlaceRepository;
+import com.market.service.CostumerService;
+import com.market.service.ProductService;
 import com.market.service.RuleMarketPlaceService;
+import com.market.service.exception.DataIntegrityException;
 
 @SpringBootApplication
 public class MarketPlacePriceApplication implements CommandLineRunner{
@@ -56,27 +60,20 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-//		saveUmAUm();
-//		saveRuleInPackage(20, 2);
+
 //		saveCostumerInPacage(200, 2);
+//		saveRuleUmAUm(5);
 //		saveProducts(3);
+
+//		saveRuleInPackage(20, 2);
+
+
 	}
 
 	private void saveProducts(int repeticoes) {
 		System.out.println("Incluindo Products");
 		Long mileInic = System.currentTimeMillis();
-		
-		List<RuleMarketPlace> rules = new ArrayList<>();
-		for (int i = 0; i < 10; i++) {
-			String uid = UUID.randomUUID().toString();
-			rules.add(ruleMarketPlaceMapper.toEntity(RuleMarketPlaceDTO.builder()
-					.name("Rule " + i + " " + uid)
-					.description("Descrição da rule "+i)
-					.discountPercentage(BigDecimal.valueOf(16))
-					.build()));
-		}
-		rules = ruleRepository.saveAll(rules);
-		
+
 		for (int i = 0; i < repeticoes; i++) {
 			String uid = UUID.randomUUID().toString();
 			Random random = new Random();
@@ -85,8 +82,6 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 					.description("Descrição do produto "+i)
 					.costPrice(BigDecimal.valueOf(random.nextInt()))
 					.costumerId(findCostumer("Costumer").getId())
-//					.rulesId(findRules("Rule"))
-					.rulesId(rules.stream().map(RuleMarketPlace::getId).collect(Collectors.toSet()))
 					.build());
 		}
 		Long mileFin = System.currentTimeMillis();
@@ -122,7 +117,7 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 
 				String uid = UUID.randomUUID().toString();
 				costumers.add(Customer.builder()
-						.name("Costumer  " + uid)
+						.name("Customer  " + uid)
 						.category("Premium")
 						.email("teste."+uid+"@gmail.com")
 						.level("Iniciante")
@@ -138,7 +133,7 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 				+ pacote+"......>Total Costumer Inclusos= "+ pacote*repeticoes);
 	}
 
-	private void saveUmAUm(int repeticoes) {
+	private void saveRuleUmAUm(int repeticoes) {
 		System.out.println("Incluindo um a um");
 		Long mileInic = System.currentTimeMillis();
 
@@ -149,6 +144,7 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 					.name("Rule " + i + " " + uid)
 					.description("Descrição da rule "+i)
 					.discountPercentage(BigDecimal.valueOf(16))
+					.customerId(findCostumer("Cu").getId())
 					.build());
 		}
 		Long mileFin = System.currentTimeMillis();

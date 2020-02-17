@@ -3,26 +3,26 @@ package com.market.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.google.common.collect.ImmutableMap;
-import com.market.contract.dto.PaginatedResourceDTO;
-import com.market.contract.dto.filters.CustomerFiltersDTO;
-import com.market.contract.dto.filters.enuns.BaseSortDTO;
-import com.market.service.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.ImmutableMap;
 import com.market.contract.dto.CostumerDTO;
+import com.market.contract.dto.PaginatedResourceDTO;
+import com.market.contract.dto.filters.CustomerFiltersDTO;
+import com.market.contract.dto.filters.enuns.BaseSortDTO;
 import com.market.mapper.CostumerMapper;
 import com.market.model.Customer;
 import com.market.repository.CustomerRepository;
 import com.market.service.exception.ObjectNotFoundException;
+import com.market.service.exception.ResourceNotFoundException;
 
 @Service
 public class CostumerService implements GenericService<CostumerDTO, CustomerFiltersDTO>{
 	@Autowired
-	private CustomerRepository costumerRepository;
+	private CustomerRepository customerRepository;
 	
 	@Autowired
 	private CostumerMapper mapper;
@@ -33,12 +33,12 @@ public class CostumerService implements GenericService<CostumerDTO, CustomerFilt
 			dto.setId(null);
 		
 		final Customer entity = mapper.toEntity(dto);
-		return mapper.toDto(costumerRepository.save(entity));
+		return mapper.toDto(customerRepository.save(entity));
 	}
 	
 	@Override
 	public List<CostumerDTO> findAll(){
-		final var custumers = costumerRepository.findAll();
+		final var custumers = customerRepository.findAll();
 		
 		if(custumers.isEmpty())
 			new ObjectNotFoundException("Não existe usuarios cadastrados");
@@ -56,17 +56,17 @@ public class CostumerService implements GenericService<CostumerDTO, CustomerFilt
 //			throw new AuthorizationException("Acesso negado.");
 //		}
 		
-		Optional<Customer> obj = costumerRepository.findById(id);
+		Optional<Customer> obj = customerRepository.findById(id);
 		
 		return mapper.toDto(obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+id+", Tipo: "+ Customer.class.getName())));
 	}
 
 	@Override
 	public CostumerDTO update(final CostumerDTO dto, final Long id) {
-		final Customer entity = costumerRepository.findById(id)
+		final Customer entity = customerRepository.findById(id)
 				.orElseThrow(ResourceNotFoundException.supply());
 		final Customer updateEntity = mapper.updateEntity(entity, dto);
-		final Customer updatedEntity = costumerRepository.save(updateEntity);
+		final Customer updatedEntity = customerRepository.save(updateEntity);
 		return mapper.toDto(updatedEntity);
 	}
 
@@ -80,7 +80,7 @@ public class CostumerService implements GenericService<CostumerDTO, CustomerFilt
 		final Sort sort = sortMapping.get(filter.getSorter());
 		final PageRequest pageRequest = PageRequest.of(filter.getPage(), filter.getLimit(), sort);
 
-		final var costumers = costumerRepository.findCostumers(filter.getName(), pageRequest);
+		final var costumers = customerRepository.findCustomers(filter.getName(), pageRequest);
 		return mapper.toDto(costumers);
 	}
 }

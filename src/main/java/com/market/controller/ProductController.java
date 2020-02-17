@@ -1,20 +1,21 @@
 package com.market.controller;
 
-import com.market.contract.ProductApi;
-import com.market.contract.dto.CostumerDTO;
-import com.market.contract.dto.PaginatedResourceDTO;
-import com.market.contract.dto.ProductDTO;
-import com.market.contract.dto.filters.ProductFiltersDTO;
-import com.market.service.ProductService;
+import java.net.URI;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.util.List;
+import com.market.contract.ProductApi;
+import com.market.contract.dto.PaginatedResourceDTO;
+import com.market.contract.dto.ProductDTO;
+import com.market.contract.dto.filters.ProductFiltersDTO;
+import com.market.service.ProductService;
 
 @Valid
 @RestController

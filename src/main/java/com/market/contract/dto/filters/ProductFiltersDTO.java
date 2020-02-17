@@ -1,15 +1,17 @@
 package com.market.contract.dto.filters;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.market.contract.dto.filters.enuns.ProductSortDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @Builder(toBuilder = true)

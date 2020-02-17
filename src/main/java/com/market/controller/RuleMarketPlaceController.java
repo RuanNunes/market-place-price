@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.market.contract.dto.PaginatedResourceDTO;
-import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.market.contract.RuleMarketPlaceApi;
+import com.market.contract.dto.PaginatedResourceDTO;
 import com.market.contract.dto.RuleMarketPlaceDTO;
+import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
 import com.market.service.RuleMarketPlaceService;
 
 @Validated

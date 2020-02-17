@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.market.contract.dto.PaginatedResourceDTO;
-import com.market.contract.dto.filters.CustomerFiltersDTO;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.market.contract.dto.CostumerDTO;
+import com.market.contract.dto.PaginatedResourceDTO;
+import com.market.contract.dto.filters.CustomerFiltersDTO;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
