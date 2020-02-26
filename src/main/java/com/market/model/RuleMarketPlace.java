@@ -3,6 +3,7 @@ package com.market.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -24,6 +25,7 @@ public class RuleMarketPlace extends PersistentEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@NotNull
+	@Column(length = 80)
 	private String name;
 
 	@NotNull

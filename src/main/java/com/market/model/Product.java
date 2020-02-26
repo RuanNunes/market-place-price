@@ -3,6 +3,7 @@ package com.market.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -40,8 +41,10 @@ public class Product extends PersistentEntity implements Serializable{
 //	private Set<RuleMarketPlace> rules = new HashSet<>();
 
 	@NotNull
+	@Column(length = 80)
 	private String name;
 	private String description;
+	@Column(length = 8)
 	private String sku;
 	private BigDecimal price;
 	@NotNull
