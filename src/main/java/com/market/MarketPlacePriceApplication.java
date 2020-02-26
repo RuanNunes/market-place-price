@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import com.market.contract.dto.filters.enuns.BaseSortDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -61,13 +62,9 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-//		saveCostumerInPacage(200, 2);
-//		saveRuleUmAUm(5);
-//		saveProducts(3);
-
-//		saveRuleInPackage(20, 2);
-
-
+		saveCostumerInPacage(200, 2);
+		saveRuleUmAUm(2000);
+		saveProducts(50000);
 	}
 
 	private void saveProducts(int repeticoes) {
@@ -75,18 +72,21 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 		Long mileInic = System.currentTimeMillis();
 
 		for (int i = 0; i < repeticoes; i++) {
-			String uid = UUID.randomUUID().toString();
-			Random random = new Random();
-			productService.save(ProductDTO.builder()
+			final String uid = UUID.randomUUID().toString();
+			final Random random = new Random();
+			final var product = productService.save(ProductDTO.builder()
 					.name("Product   " + uid)
 					.description("Descrição do produto "+i)
 					.costPrice(BigDecimal.valueOf(random.nextInt()))
-					.costumerId(findCostumer("Costumer").getId())
+					.costumerId(findCostumer("Cu").getId())
 					.build());
+			Long mileFin = System.currentTimeMillis();
+			Long time = (mileFin - mileInic);
+			System.out.println(time + " Milesegudos para inserir Produto......> name: "+ product.getName() + "....> interação: " + i);
 		}
 		Long mileFin = System.currentTimeMillis();
 		Long time = ((mileFin - mileInic)/1000)/60;
-		System.out.println(time + " Minutos para inserir um a um......> Total Inclusos= "+ repeticoes);
+		System.out.println(time + " Minutos para inserir Produtos......> Total Inclusos= "+ repeticoes);
 	}
 
 	private Set<Long> findRules(String name){
@@ -99,12 +99,16 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 	}
 
 	private Customer findCostumer(String name){
+		final Random random = new Random();
+		final boolean randomSorter= random.nextBoolean();
+		final int index = random.nextInt(54);
 		return costumerMapper.toEntity(costumerService
 				.findPaginate(CustomerFiltersDTO
 						.builder()
 						.name(name)
-						.limit(Integer.valueOf(1))
-						.build()).stream().findFirst().orElseThrow(() -> new DataIntegrityException("Não foi possivel encontrar um Costumer")));
+						.sorter(randomSorter ? BaseSortDTO.MOST_RECENT : BaseSortDTO.LEAST_RECENT)
+						.limit(Integer.valueOf(54))
+						.build()).getRecords().get(index));//.orElseThrow(() -> new DataIntegrityException("Não foi possivel encontrar um Costumer")));
 	}
 
 	private void saveCostumerInPacage(int pacote, int repeticoes){
@@ -134,22 +138,26 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 	}
 
 	private void saveRuleUmAUm(int repeticoes) {
-		System.out.println("Incluindo um a um");
+		System.out.println("Incluindo Rules um a um");
 		Long mileInic = System.currentTimeMillis();
 
 		for (int i = 0; i < repeticoes; i++) {
-			String uid = UUID.randomUUID().toString();
+			final String uid = UUID.randomUUID().toString();
 			
-			rule.save(RuleMarketPlaceDTO.builder()
+			final var ruleSaved = rule.save(RuleMarketPlaceDTO.builder()
 					.name("Rule " + i + " " + uid)
 					.description("Descrição da rule "+i)
 					.discountPercentage(BigDecimal.valueOf(16))
 					.customerId(findCostumer("Cu").getId())
 					.build());
+
+			final Long mileFin = System.currentTimeMillis();
+			final Long time = (mileFin - mileInic);
+			System.out.println(time + " Milesegudos para inserir Rule......> name: "+ ruleSaved.getName() + "....> interação: " + i);
 		}
-		Long mileFin = System.currentTimeMillis();
-		Long time = ((mileFin - mileInic)/1000)/60;
-		System.out.println(time + " Minutos para inserir um a um......> Total Inclusos= "+ repeticoes);
+		final Long mileFin = System.currentTimeMillis();
+		final Long time = ((mileFin - mileInic)/1000)/60;
+		System.out.println(time + " Minutos para inserir Rules um a um......> Total Inclusos= "+ repeticoes);
 	}
 	
 	private void saveRuleInPackage(int pacote, int repeticoes) {
@@ -166,6 +174,7 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 						.name("Rule " + i + " " + uid)
 						.description("Descrição da rule "+i)
 						.discountPercentage(BigDecimal.valueOf(16))
+
 						.build()));
 			}
 			ruleRepository.saveAll(rules);

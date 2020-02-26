@@ -1,4 +1,26 @@
 spring:
+    server.port: 8000
+
+    application:
+#        name: market-place
+#        jackson:
+#            property-naming-strategy: SNAKE_CASE
+
+        #    Para utilização com MongoDB, descomente as duas linhas abaixo, além das dependências no pom.xml.
+        #  data:
+        #    mongodb.uri: mongodb://${DB_URL:localhost}/users
+
+        #    Para utilização com MySQL, descomente as duas linhas abaixo, além das dependências no pom.xml.
+#        datasource:
+#            url: jdbc:mysql://root:root@${DB_URL:localhost}/users?useSsl=false
+        jpa:
+            show-sql: true
+            hibernate:
+                ddl-auto: update
+                format_sql: false
+                temp:
+                use_jdbc_metadata_defaults: false
+
 # Banco maquina Jeudi
 #    datasource.url: jdbc:postgresql://db.jeudi.dev:5432/market-db
 #    datasource.username: market-app
@@ -9,15 +31,10 @@ spring:
     datasource.username: fefxzoja
     datasource.password: smoJuLyk2d3_2sF7LD3365gg0nbdlG8v
 
-# Banco Local
+## Banco Local Postgres
 #    datasource.url: jdbc:postgresql://localhost:5432/market-db
 #    datasource.username: postgres
 #    datasource.password: 123
-    jpa.hibernate.ddl-auto: update
-    jpa.show-sql: true
-    jpa.properties.hibernate.format_sql: true
-    jpa.properties.hibernate.temp.use_jdbc_metadata_defaults: false
-    jpa.database-platform: org.hibernate.dialect.PostgreSQL9Dialect
 
 jwt:
     secret: SequenciaDeCaracteresParaAssinarToken

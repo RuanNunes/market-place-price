@@ -35,11 +35,9 @@ public class ProductService implements GenericService<ProductDTO, ProductFilters
 
     @Override
     public ProductDTO save(final ProductDTO dto) {
-        if(dto.getId() != null || dto.getId() == 0)
-            dto.setId(null);
-
-
         final Product entity = productMapper.toEntity(dto);
+        if(dto.getId() != null || dto.getId() == null || dto.getId() == 0)
+            entity.setId(null);
 
         //TODO descomentar se adicionar ligação entre product e rule
 //        if (dto.getRulesId() != null || !dto.getRulesId().isEmpty()){
