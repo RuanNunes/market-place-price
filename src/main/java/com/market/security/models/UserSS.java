@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class UserSS implements UserDetails {
 
@@ -17,18 +18,6 @@ public class UserSS implements UserDetails {
     private String senha;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserSS() {
-
-    }
-
-    public UserSS(Integer id, String email, String senha, Set<Perfil> perfis
-        ) {
-        super();
-        this.id = id;
-        this.email = email;
-        this.senha = senha;
-        //this.authorities = perfis.stream().map(x -> new SimpleGrantedAuthority(x.getDescricao())).collect(Collectors.toSet());
-    }
 
     public Integer getId() {
         return id;

@@ -9,9 +9,7 @@ public class CredenciaisDTO implements Serializable {
     private String email;
     private String senha;
 
-    public CredenciaisDTO() {
 
-    }
 
     public String getEmail() {
         return email;
