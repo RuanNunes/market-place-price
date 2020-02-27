@@ -62,9 +62,9 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-		saveCostumerInPacage(200, 2);
-		saveRuleUmAUm(2000);
-		saveProducts(50000);
+		//saveCostumerInPacage(200, 2);
+		//saveRuleUmAUm(2000);
+		//saveProducts(50000);
 	}
 
 	private void saveProducts(int repeticoes) {

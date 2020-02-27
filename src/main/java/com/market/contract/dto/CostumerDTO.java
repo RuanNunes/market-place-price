@@ -20,6 +20,8 @@ public class CostumerDTO implements Serializable {
 	@NotNull
 	private String email;
 	@NotNull
+	private String name;
+	@NotNull
 	private String password;
 	
 	//TODO faz parte das rules
