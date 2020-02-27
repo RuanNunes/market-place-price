@@ -1,7 +1,7 @@
 package com.market.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.market.security.dto.CredenciaisDTO;
+import com.market.security.dto.CredentialsDTO;
 import com.market.security.models.UserSS;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -32,7 +32,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException {
         try {
-            CredenciaisDTO creds = new ObjectMapper().readValue(req.getInputStream(), CredenciaisDTO.class);
+            CredentialsDTO creds = new ObjectMapper().readValue(req.getInputStream(), CredentialsDTO.class);
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(creds.getEmail(),
                     creds.getSenha(), new ArrayList<>());
 
