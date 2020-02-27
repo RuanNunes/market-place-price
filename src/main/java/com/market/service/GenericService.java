@@ -1,8 +1,8 @@
 package com.market.service;
 
-import java.util.List;
-
 import com.market.contract.dto.PaginatedResourceDTO;
+
+import java.util.List;
 
 public interface GenericService<T, V> {
 	public T save(final T dto);

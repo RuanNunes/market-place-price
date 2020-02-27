@@ -1,13 +1,12 @@
 package com.market.contract.dto;
 
-import java.io.Serializable;
-
-import javax.validation.constraints.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
 @Builder
@@ -19,6 +18,8 @@ public class CostumerDTO implements Serializable {
 	private Long id;
 	@NotNull
 	private String email;
+	@NotNull
+	private String name;
 	@NotNull
 	private String password;
 	

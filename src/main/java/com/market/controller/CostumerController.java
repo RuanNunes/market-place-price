@@ -1,34 +1,34 @@
 package com.market.controller;
 
-import java.net.URI;
-import java.util.List;
-
-import javax.validation.Valid;
-
+import com.market.contract.CostumerApi;
+import com.market.contract.dto.CostumerDTO;
+import com.market.contract.dto.PaginatedResourceDTO;
+import com.market.contract.dto.filters.CustomerFiltersDTO;
+import com.market.service.CostumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.market.contract.CostumerApi;
-import com.market.contract.dto.CostumerDTO;
-import com.market.contract.dto.PaginatedResourceDTO;
-import com.market.contract.dto.filters.CustomerFiltersDTO;
-import com.market.service.CostumerService;
+import javax.validation.Valid;
+import java.net.URI;
+import java.util.List;
 
 @Valid
 @RestController
 public class CostumerController implements CostumerApi {
+
 	@Autowired
 	private CostumerService service;
 
 	@Override
-	public ResponseEntity<Void> save(@Valid @RequestBody CostumerDTO custumer) {
-		final var obj = service.save(custumer);
+	public ResponseEntity<Void> save(@Valid @RequestBody CostumerDTO costumer) {
+		final var obj = service.save(costumer);
 		//retorna url com novo registro inserido
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		// Não está retornando a URI no corpo da response
 		return ResponseEntity.created(uri).build();
 	}
 

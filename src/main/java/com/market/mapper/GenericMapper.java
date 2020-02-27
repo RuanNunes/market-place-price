@@ -1,15 +1,14 @@
 package com.market.mapper;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import com.google.common.reflect.TypeToken;
+import com.market.contract.dto.PaginatedResourceDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
-import com.google.common.reflect.TypeToken;
-import com.market.contract.dto.PaginatedResourceDTO;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class GenericMapper<Entity, Dto> {
