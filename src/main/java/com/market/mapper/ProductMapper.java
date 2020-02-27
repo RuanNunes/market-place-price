@@ -1,9 +1,8 @@
 package com.market.mapper;
 
-import org.springframework.stereotype.Component;
-
 import com.market.contract.dto.ProductDTO;
 import com.market.model.Product;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ProductMapper extends GenericMapper<Product, ProductDTO> {

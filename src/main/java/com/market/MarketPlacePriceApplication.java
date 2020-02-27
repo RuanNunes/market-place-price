@@ -1,23 +1,10 @@
 package com.market;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
-import com.market.contract.dto.filters.enuns.BaseSortDTO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import com.market.contract.dto.ProductDTO;
 import com.market.contract.dto.RuleMarketPlaceDTO;
 import com.market.contract.dto.filters.CustomerFiltersDTO;
 import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
+import com.market.contract.dto.filters.enuns.BaseSortDTO;
 import com.market.mapper.CostumerMapper;
 import com.market.mapper.RuleMarketPlaceMapper;
 import com.market.model.Customer;
@@ -28,7 +15,14 @@ import com.market.repository.RuleMarketPlaceRepository;
 import com.market.service.CostumerService;
 import com.market.service.ProductService;
 import com.market.service.RuleMarketPlaceService;
-import com.market.service.exception.DataIntegrityException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.math.BigDecimal;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class MarketPlacePriceApplication implements CommandLineRunner{

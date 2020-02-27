@@ -1,25 +1,17 @@
 package com.market.contract;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
-import org.springframework.cloud.openfeign.SpringQueryMap;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.market.contract.dto.CostumerDTO;
 import com.market.contract.dto.PaginatedResourceDTO;
 import com.market.contract.dto.filters.CustomerFiltersDTO;
-
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.cloud.openfeign.SpringQueryMap;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @RequestMapping("/api/v1/costumers/")
 public interface CostumerApi extends GenericApi<CostumerDTO, CustomerFiltersDTO> {

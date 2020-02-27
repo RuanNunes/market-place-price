@@ -1,13 +1,5 @@
 package com.market.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-
 import com.google.common.collect.ImmutableMap;
 import com.market.contract.dto.CostumerDTO;
 import com.market.contract.dto.PaginatedResourceDTO;
@@ -18,6 +10,13 @@ import com.market.model.Customer;
 import com.market.repository.CustomerRepository;
 import com.market.service.exception.ObjectNotFoundException;
 import com.market.service.exception.ResourceNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CostumerService implements GenericService<CostumerDTO, CustomerFiltersDTO>{
