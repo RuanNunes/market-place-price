@@ -29,7 +29,7 @@ public class RuleMarketPlace extends PersistentEntity implements Serializable{
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_id")
-	private Customer customer;
+	private Costumer customer;
 
 	@NotNull
 	private BigDecimal discountPercentage;

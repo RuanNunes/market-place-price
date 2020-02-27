@@ -21,7 +21,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 @Entity
-public class Customer extends PersistentEntity implements Serializable{
+public class Costumer extends PersistentEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@NotNull

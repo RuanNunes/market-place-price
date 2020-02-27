@@ -16,7 +16,7 @@ spring:
         jpa:
             show-sql: true
             hibernate:
-                ddl-auto: update
+                ddl-auto: create
                 format_sql: false
                 temp:
                 use_jdbc_metadata_defaults: false
@@ -36,9 +36,8 @@ spring:
 #    datasource.username: postgres
 #    datasource.password: 123
 
-jwt:
-    secret: SequenciaDeCaracteresParaAssinarToken
-    expiration: 600000
+jwt.secret=SequenciaDeCaracteresParaAssinarToken
+jwt.expiration=60000
 
 logging.level.org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE
 spring.http.log-request-details: true

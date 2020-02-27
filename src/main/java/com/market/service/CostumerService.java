@@ -6,13 +6,14 @@ import com.market.contract.dto.PaginatedResourceDTO;
 import com.market.contract.dto.filters.CustomerFiltersDTO;
 import com.market.contract.dto.filters.enuns.BaseSortDTO;
 import com.market.mapper.CostumerMapper;
-import com.market.model.Customer;
-import com.market.repository.CustomerRepository;
+import com.market.model.Costumer;
+import com.market.repository.CostumerRepository;
 import com.market.service.exception.ObjectNotFoundException;
 import com.market.service.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,17 +22,21 @@ import java.util.Optional;
 @Service
 public class CostumerService implements GenericService<CostumerDTO, CustomerFiltersDTO>{
 	@Autowired
-	private CustomerRepository customerRepository;
+	private CostumerRepository customerRepository;
 	
 	@Autowired
 	private CostumerMapper mapper;
-	
+
+//	@Autowired
+	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
 	@Override
 	public CostumerDTO save(final CostumerDTO dto) {
 		if((dto.getId() != null)) 
 			dto.setId(null);
 		
-		final Customer entity = mapper.toEntity(dto);
+		final Costumer entity = mapper.toEntity(dto);
+		entity.setPassword(encoder.encode(entity.getPassword()));
 		return mapper.toDto(customerRepository.save(entity));
 	}
 	
@@ -55,17 +60,17 @@ public class CostumerService implements GenericService<CostumerDTO, CustomerFilt
 //			throw new AuthorizationException("Acesso negado.");
 //		}
 		
-		Optional<Customer> obj = customerRepository.findById(id);
+		Optional<Costumer> obj = customerRepository.findById(id);
 		
-		return mapper.toDto(obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+id+", Tipo: "+ Customer.class.getName())));
+		return mapper.toDto(obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+id+", Tipo: "+ Costumer.class.getName())));
 	}
 
 	@Override
 	public CostumerDTO update(final CostumerDTO dto, final Long id) {
-		final Customer entity = customerRepository.findById(id)
+		final Costumer entity = customerRepository.findById(id)
 				.orElseThrow(ResourceNotFoundException.supply());
-		final Customer updateEntity = mapper.updateEntity(entity, dto);
-		final Customer updatedEntity = customerRepository.save(updateEntity);
+		final Costumer updateEntity = mapper.updateEntity(entity, dto);
+		final Costumer updatedEntity = customerRepository.save(updateEntity);
 		return mapper.toDto(updatedEntity);
 	}
 

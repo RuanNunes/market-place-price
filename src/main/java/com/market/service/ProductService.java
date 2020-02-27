@@ -4,9 +4,9 @@ import com.market.contract.dto.PaginatedResourceDTO;
 import com.market.contract.dto.ProductDTO;
 import com.market.contract.dto.filters.ProductFiltersDTO;
 import com.market.mapper.ProductMapper;
-import com.market.model.Customer;
+import com.market.model.Costumer;
 import com.market.model.Product;
-import com.market.repository.CustomerRepository;
+import com.market.repository.CostumerRepository;
 import com.market.repository.ProductRepository;
 import com.market.repository.RuleMarketPlaceRepository;
 import com.market.service.exception.ObjectNotFoundException;
@@ -27,7 +27,7 @@ public class ProductService implements GenericService<ProductDTO, ProductFilters
     private ProductMapper productMapper;
 
     @Autowired
-    private CustomerRepository costumerRepository;
+    private CostumerRepository costumerRepository;
 
     @Autowired
     private RuleMarketPlaceRepository ruleMarketPlaceRepository;
@@ -48,8 +48,8 @@ public class ProductService implements GenericService<ProductDTO, ProductFilters
 //            entity.setRules(rules);
 //        }
 
-        final Customer costumer = costumerRepository.findById(dto.getCostumerId())
-                .orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+dto.getCostumerId()+", Tipo: "+ Customer.class.getName()));
+        final Costumer costumer = costumerRepository.findById(dto.getCostumerId())
+                .orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+dto.getCostumerId()+", Tipo: "+ Costumer.class.getName()));
 
         entity.setCustomer(costumer);
         final var productSave = productRepository.save(entity);

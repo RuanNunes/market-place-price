@@ -6,9 +6,9 @@ import com.market.contract.dto.RuleMarketPlaceDTO;
 import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
 import com.market.contract.dto.filters.enuns.RuleMarketPlaceSortDTO;
 import com.market.mapper.RuleMarketPlaceMapper;
-import com.market.model.Customer;
+import com.market.model.Costumer;
 import com.market.model.RuleMarketPlace;
-import com.market.repository.CustomerRepository;
+import com.market.repository.CostumerRepository;
 import com.market.repository.RuleMarketPlaceRepository;
 import com.market.service.exception.ObjectNotFoundException;
 import com.market.service.exception.ResourceNotFoundException;
@@ -29,7 +29,7 @@ public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO
 	private RuleMarketPlaceMapper mapper;
 
 	@Autowired
-	private CustomerRepository customerRepository;
+	private CostumerRepository customerRepository;
 	
 	@Override
 	public RuleMarketPlaceDTO save(final RuleMarketPlaceDTO dto) {
@@ -38,8 +38,8 @@ public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO
 		if(!(entity.getId() == null)) 
 			entity.setId(null);
 
-		final Customer customer = customerRepository.findById(dto.getCustomerId()).orElseThrow(() -> new ObjectNotFoundException(    "Objeto não encontrado! Id: "
-				+ dto.getCustomerId() + ", Tipo: " + Customer.class.getName()));
+		final Costumer customer = customerRepository.findById(dto.getCustomerId()).orElseThrow(() -> new ObjectNotFoundException(    "Objeto não encontrado! Id: "
+				+ dto.getCustomerId() + ", Tipo: " + Costumer.class.getName()));
 
 		entity.setCustomer(customer);
 		return mapper.toDto(ruleMarketPlaceRepository.save(entity));

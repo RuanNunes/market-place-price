@@ -7,9 +7,9 @@ import com.market.contract.dto.filters.RuleMarketPlaceFiltersDTO;
 import com.market.contract.dto.filters.enuns.BaseSortDTO;
 import com.market.mapper.CostumerMapper;
 import com.market.mapper.RuleMarketPlaceMapper;
-import com.market.model.Customer;
+import com.market.model.Costumer;
 import com.market.model.RuleMarketPlace;
-import com.market.repository.CustomerRepository;
+import com.market.repository.CostumerRepository;
 import com.market.repository.ProductRepository;
 import com.market.repository.RuleMarketPlaceRepository;
 import com.market.service.CostumerService;
@@ -39,7 +39,7 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 	private RuleMarketPlaceMapper ruleMarketPlaceMapper;
 
 	@Autowired
-	private CustomerRepository costumerRepository;
+	private CostumerRepository costumerRepository;
 
 	@Autowired
 	private CostumerService costumerService;
@@ -92,7 +92,7 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 		return list;
 	}
 
-	private Customer findCostumer(String name){
+	private Costumer findCostumer(String name){
 		final Random random = new Random();
 		final boolean randomSorter= random.nextBoolean();
 		final int index = random.nextInt(54);
@@ -110,11 +110,11 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 
 		System.out.println("Incluindo Costumers "+pacote+ " a " + pacote);
 		for (int i = 0; i < repeticoes; i++) {
-			final List<Customer> costumers = new ArrayList<Customer>();
+			final List<Costumer> costumers = new ArrayList<Costumer>();
 			for (int j = 0; j < pacote; j++) {
 
 				String uid = UUID.randomUUID().toString();
-				costumers.add(Customer.builder()
+				costumers.add(Costumer.builder()
 						.name("Customer  " + uid)
 						.category("Premium")
 						.email("teste."+uid+"@gmail.com")
