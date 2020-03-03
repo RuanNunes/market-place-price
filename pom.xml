@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -12,7 +12,7 @@
 	<artifactId>market-place-price</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>market-place-price</name>
-	<description>projeto para simplificar preços de produtos em diversos market places</description>
+	<description>Projeto para simplificar preços de produtos em diversos market places</description>
 
 	<properties>
 		<java.version>13</java.version>
@@ -23,18 +23,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.boot</groupId> -->
-<!-- 			<artifactId>spring-boot-starter-data-mongodb</artifactId> -->
-<!-- 		</dependency> -->
+		<!-- 		<dependency> -->
+		<!-- 			<groupId>org.springframework.boot</groupId> -->
+		<!-- 			<artifactId>spring-boot-starter-data-mongodb</artifactId> -->
+		<!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.kafka</groupId> -->
-<!-- 			<artifactId>spring-kafka</artifactId> -->
-<!-- 		</dependency> -->
+		<!-- 		<dependency> -->
+		<!-- 			<groupId>org.springframework.kafka</groupId> -->
+		<!-- 			<artifactId>spring-kafka</artifactId> -->
+		<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -46,19 +46,19 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
 			<version>2.7.0</version>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.7.0</version>
-		</dependency> 
-		
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -70,12 +70,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.kafka</groupId> -->
-<!-- 			<artifactId>spring-kafka-test</artifactId> -->
-<!-- 			<scope>test</scope> -->
-<!-- 		</dependency> -->
-		
+		<!-- 		<dependency> -->
+		<!-- 			<groupId>org.springframework.kafka</groupId> -->
+		<!-- 			<artifactId>spring-kafka-test</artifactId> -->
+		<!-- 			<scope>test</scope> -->
+		<!-- 		</dependency> -->
+
 		<!-- DTO to Domain Mapping -->
 		<dependency>
 			<groupId>org.modelmapper</groupId>
@@ -108,6 +108,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.market.MarketPlacePriceApplication</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 		<finalName>market-place-price-docker</finalName>
