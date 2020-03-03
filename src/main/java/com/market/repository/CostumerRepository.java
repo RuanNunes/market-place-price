@@ -10,7 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface CostumerRepository extends JpaRepository<Costumer, Long> {
-    @Query(value = "select * from customer c" +
+    @Transactional(readOnly = true)
+    @Query(value = "select * from costumer c" +
             " where c.name like %?1%", nativeQuery = true)
     Page<Costumer> findCustomers(String name, Pageable page);
 

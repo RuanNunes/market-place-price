@@ -8,6 +8,9 @@ import com.market.contract.dto.filters.enuns.BaseSortDTO;
 import com.market.mapper.CostumerMapper;
 import com.market.model.Costumer;
 import com.market.repository.CostumerRepository;
+import com.market.security.enums.Profile;
+import com.market.security.models.UserSS;
+import com.market.service.exception.AuthorizationException;
 import com.market.service.exception.ObjectNotFoundException;
 import com.market.service.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,9 +41,16 @@ public class CostumerService implements GenericService<CostumerDTO, CustomerFilt
 		
 		final Costumer entity = mapper.toEntity(dto);
 		entity.setPassword(encoder.encode(entity.getPassword()));
+		entity.setProfiles(addProfile(Profile.CLIENTE));
 		return mapper.toDto(customerRepository.save(entity));
 	}
-	
+
+	private HashSet<Integer> addProfile(Profile profile) {
+ 		HashSet<Integer> hashSet = new HashSet<>();
+		hashSet.add(profile.getCod());
+		return hashSet;
+	}
+
 	@Override
 	public List<CostumerDTO> findAll(){
 		final var custumers = customerRepository.findAll();
@@ -52,15 +63,14 @@ public class CostumerService implements GenericService<CostumerDTO, CustomerFilt
 	
 	@Override
 	public CostumerDTO find(Long id) {
-		
-		//TODO descomentar quando implementação de spring security for configurada
-//		UserSS user = UserService.authenticated();
+
+		final UserSS user = UserService.authenticated();
 //		
-//		if(user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
-//			throw new AuthorizationException("Acesso negado.");
-//		}
+		if(user==null || !user.hasRole(Profile.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado.");
+		}
 		
-		Optional<Costumer> obj = customerRepository.findById(id);
+		final Optional<Costumer> obj = customerRepository.findById(id);
 		
 		return mapper.toDto(obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+id+", Tipo: "+ Costumer.class.getName())));
 	}
