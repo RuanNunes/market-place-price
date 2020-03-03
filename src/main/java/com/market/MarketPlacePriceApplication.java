@@ -56,16 +56,16 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-		//saveCostumerInPacage(200, 2);
-		//saveRuleUmAUm(2000);
-		//saveProducts(50000);
+		saveCostumerInPacage(10000, 100);
+		saveRuleUmAUm(20000);
+		saveProducts(500099);
 	}
 
 	private void saveProducts(int repeticoes) {
 		System.out.println("Incluindo Products");
-		Long mileInic = System.currentTimeMillis();
-
+		final Long mileIniciPrincipal = System.currentTimeMillis();
 		for (int i = 0; i < repeticoes; i++) {
+			final Long mileInic = System.currentTimeMillis();
 			final String uid = UUID.randomUUID().toString();
 			final Random random = new Random();
 			final var product = productService.save(ProductDTO.builder()
@@ -79,7 +79,7 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 			System.out.println(time + " Milesegudos para inserir Produto......> name: "+ product.getName() + "....> interação: " + i);
 		}
 		Long mileFin = System.currentTimeMillis();
-		Long time = ((mileFin - mileInic)/1000)/60;
+		Double time = ((mileFin.doubleValue() - mileIniciPrincipal.doubleValue())/1000)/60;
 		System.out.println(time + " Minutos para inserir Produtos......> Total Inclusos= "+ repeticoes);
 	}
 
@@ -106,8 +106,8 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 	}
 
 	private void saveCostumerInPacage(int pacote, int repeticoes){
-		Long mileInic = System.currentTimeMillis();
 
+		final Long mileInic = System.currentTimeMillis();
 		System.out.println("Incluindo Costumers "+pacote+ " a " + pacote);
 		for (int i = 0; i < repeticoes; i++) {
 			final List<Costumer> costumers = new ArrayList<Costumer>();
@@ -133,11 +133,11 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 
 	private void saveRuleUmAUm(int repeticoes) {
 		System.out.println("Incluindo Rules um a um");
-		Long mileInic = System.currentTimeMillis();
+		final Long mileIniciPrincipal = System.currentTimeMillis();
 
 		for (int i = 0; i < repeticoes; i++) {
 			final String uid = UUID.randomUUID().toString();
-			
+			final Long mileInic = System.currentTimeMillis();
 			final var ruleSaved = rule.save(RuleMarketPlaceDTO.builder()
 					.name("Rule " + i + " " + uid)
 					.description("Descrição da rule "+i)
@@ -150,7 +150,7 @@ public class MarketPlacePriceApplication implements CommandLineRunner{
 			System.out.println(time + " Milesegudos para inserir Rule......> name: "+ ruleSaved.getName() + "....> interação: " + i);
 		}
 		final Long mileFin = System.currentTimeMillis();
-		final Long time = ((mileFin - mileInic)/1000)/60;
+		final Double time = ((mileFin.doubleValue() - mileIniciPrincipal.doubleValue())/1000)/60;
 		System.out.println(time + " Minutos para inserir Rules um a um......> Total Inclusos= "+ repeticoes);
 	}
 	

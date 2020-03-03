@@ -11,11 +11,10 @@ import java.util.Date;
 @Component
 public class JWTUtil {
 
-    private String secret = "SequenciaDeCaracteresParaAssinarToken";
-
-    private Long expiration = 60000L;
-
-
+    @Value("${jwt.secret}")
+    private String secret;
+    @Value("${jwt.expiration}")
+    private Long expiration;
 
     public String generateToken(String userName) {
         return Jwts.builder()

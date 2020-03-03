@@ -1,43 +1,31 @@
 spring:
-    server.port: 8000
-
-    application:
-#        name: market-place
-#        jackson:
-#            property-naming-strategy: SNAKE_CASE
-
-        #    Para utilização com MongoDB, descomente as duas linhas abaixo, além das dependências no pom.xml.
-        #  data:
-        #    mongodb.uri: mongodb://${DB_URL:localhost}/users
-
-        #    Para utilização com MySQL, descomente as duas linhas abaixo, além das dependências no pom.xml.
-#        datasource:
-#            url: jdbc:mysql://root:root@${DB_URL:localhost}/users?useSsl=false
-        jpa:
-            show-sql: true
-            hibernate:
-                ddl-auto: create
-                format_sql: false
-                temp:
-                use_jdbc_metadata_defaults: false
-
-# Banco maquina Jeudi
-#    datasource.url: jdbc:postgresql://db.jeudi.dev:5432/market-db
-#    datasource.username: market-app
-#    datasource.password: 1123
+    jpa:
+        show-sql: false
+        hibernate:
+            ddl-auto: create
+            format_sql: false
+            temp:
+            use_jdbc_metadata_defaults: false
+    datasource:
+        url: jdbc:postgresql://tuffi.db.elephantsql.com:5432/fefxzoja
+        username: fefxzoja
+        password: smoJuLyk2d3_2sF7LD3365gg0nbdlG8v
 
 # Banco Clound obs.: so libera uma coneção por vez
-    datasource.url: jdbc:postgresql://tuffi.db.elephantsql.com:5432/fefxzoja
-    datasource.username: fefxzoja
-    datasource.password: smoJuLyk2d3_2sF7LD3365gg0nbdlG8v
 
 ## Banco Local Postgres
-#    datasource.url: jdbc:postgresql://localhost:5432/market-db
-#    datasource.username: postgres
-#    datasource.password: 123
+#        url: jdbc:postgresql://localhost:5432/market-db
+#        username: postgres
+#        password: 123
+# Banco maquina Jeudi
+#        url: jdbc:postgresql://db.jeudi.dev:5432/market-db
+#        username: market-app
+#        password: 1123
 
-jwt.secret=SequenciaDeCaracteresParaAssinarToken
-jwt.expiration=60000
 
-logging.level.org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE
-spring.http.log-request-details: true
+jwt:
+    secret: SequenciaDeCaracteresParaAssinarToken
+    expiration: 60000
+
+#logging.level.org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE
+#spring.http.log-request-details: true

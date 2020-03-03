@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@SequenceGenerator(name = "sequence_generator", sequenceName = "SEQ_RULE_MARKET_PLACE", allocationSize = 1)
 public class RuleMarketPlace extends PersistentEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 

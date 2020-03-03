@@ -3,7 +3,7 @@ package com.market.security.enums;
 import lombok.Getter;
 import lombok.Setter;
 
-public enum Perfil {
+public enum Profile {
     //ROLE É EXIGENCIA DO SPRING SECURITY
     ADMIN(1,"ROLE_ADMIN"),
     CLIENTE(2,"ROLE_CLIENTE");
@@ -16,7 +16,7 @@ public enum Perfil {
     @Setter
     private String descricao;
 
-    private Perfil(int cod, String descricao) {
+    private Profile(int cod, String descricao) {
         this.cod = cod;
         this.descricao = descricao;
     }
@@ -29,11 +29,11 @@ public enum Perfil {
         return descricao;
     }
 
-    public static Perfil toEnum(Integer cod) {
+    public static Profile toEnum(Integer cod) {
         if(cod == null) {
             return null;
         }
-        for (Perfil x : Perfil.values()) {
+        for (Profile x : Profile.values()) {
             if(cod.equals(x.getCod())) {
                 return x;
             }

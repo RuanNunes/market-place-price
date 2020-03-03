@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 @Entity
+@SequenceGenerator(name = "sequence_generator", sequenceName = "SEQ_PRODUCT", allocationSize = 1)
 public class Product extends PersistentEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 
