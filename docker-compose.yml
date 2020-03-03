@@ -1,0 +1,12 @@
+version: '3.4'
+services:
+  market-place-price-api-java:
+    container_name: market-place-price
+    build:
+      context: .
+      dockerfile: dev.DockerFile
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_URL=dburl
+
