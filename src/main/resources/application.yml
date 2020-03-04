@@ -7,7 +7,7 @@ spring:
             temp:
             use_jdbc_metadata_defaults: false
     datasource:
-        url: jdbc:postgresql://localhost:5432/market-db
+        url: jdbc:postgresql://market-place-db-postgres/market-db
         username: postgres
         password: 123
 
