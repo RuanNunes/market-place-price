@@ -35,7 +35,7 @@ public class RuleMarketPlaceService implements GenericService<RuleMarketPlaceDTO
 	public RuleMarketPlaceDTO save(final RuleMarketPlaceDTO dto) {
 		final RuleMarketPlace entity = mapper.toEntity(dto);
 
-		if(!(entity.getId() == null)) 
+		if(((entity.getId()) != null))
 			entity.setId(null);
 
 		final Costumer customer = customerRepository.findById(dto.getCustomerId()).orElseThrow(() -> new ObjectNotFoundException(    "Objeto não encontrado! Id: "
