@@ -1,7 +1,7 @@
 version: '3.4'
 services:
-  marke-place-db-postgres:
-    container_name: marke-place-db-postgres
+  market-place-db-postgres:
+    container_name: market-place-db-postgres
     build:
       context: .
       dockerfile: postgres.DockerFile
@@ -18,7 +18,7 @@ services:
       context: .
       dockerfile: dev.DockerFile
     depends_on:
-      - marke-place-db-postgres
+      - market-place-db-postgres
     ports:
       - "8080:8080"
     environment:
