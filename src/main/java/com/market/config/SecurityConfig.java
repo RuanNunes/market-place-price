@@ -1,5 +1,4 @@
 package com.market.config;
-
 import com.market.security.JWTAuthenticationFilter;
 import com.market.security.JWTAuthorizationFilter;
 import com.market.security.JWTUtil;
@@ -19,7 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
 import java.util.Arrays;
 
 @Configuration
