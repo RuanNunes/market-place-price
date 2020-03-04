@@ -1,12 +1,25 @@
 version: '3.4'
 services:
+  marke-place-db-postgres:
+    container_name: marke-place-db-postgres
+    build:
+      context: .
+      dockerfile: postgres.DockerFile
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=market-db
+      - POSTGRES_PASSWORD=123
+
+
   market-place-price-api-java:
     container_name: market-place-price
     build:
       context: .
       dockerfile: dev.DockerFile
+    depends_on:
+      - marke-place-db-postgres
     ports:
       - "8080:8080"
     environment:
-      - DB_URL=dburl
-
+      - DB_URL=marke-place-db-postgres:5432

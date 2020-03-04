@@ -7,11 +7,14 @@ spring:
             temp:
             use_jdbc_metadata_defaults: false
     datasource:
-        url: jdbc:postgresql://tuffi.db.elephantsql.com:5432/fefxzoja
-        username: fefxzoja
-        password: smoJuLyk2d3_2sF7LD3365gg0nbdlG8v
+        url: jdbc:postgresql://localhost:5432/market-db
+        username: postgres
+        password: 123
 
 # Banco Clound obs.: so libera uma coneção por vez
+#url: jdbc:postgresql://tuffi.db.elephantsql.com:5432/fefxzoja
+#    username: fefxzoja
+#    password: smoJuLyk2d3_2sF7LD3365gg0nbdlG8v
 
 ## Banco Local Postgres
 #        url: jdbc:postgresql://localhost:5432/market-db
