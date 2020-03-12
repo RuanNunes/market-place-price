@@ -15,4 +15,4 @@
 - [Lombook](https://projectlombok.org/setup/intellij)  
 # RUM
 
--  {path project/} docker-compose   up --build 
+-  {path project}/docker-compose up --build 
